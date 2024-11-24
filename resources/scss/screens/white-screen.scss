@@ -1,0 +1,13 @@
+@use '../config/config' as *;
+
+$block-name: 'b-white-screen';
+
+.#{$block-name} {
+    background-color: var(--color-white);
+    transition: opacity 0.5s ease;
+    opacity: 1;
+
+    &.leave {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,13 @@
+@use 'config/vars' as vars;
+
+html {
+    @include vars.variables;
+
+    font-size: 10px;
+}
+
+body {
+    font-family: OverpassMono;
+    background-color: var(--color-black);
+    color: var(--color-white);
+}

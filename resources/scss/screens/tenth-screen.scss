@@ -1,0 +1,29 @@
+@use '../config/config' as *;
+
+$block-name: 'b-tenth-screen';
+
+.#{$block-name} {
+    padding-top: 32.7vh;
+
+    &__title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-weight: 700;
+
+        & span:nth-child(1) {
+            font-size: 6.4rem;
+            height: 1.2em;
+        }
+
+        & span:nth-child(2) {
+            font-size: 3.3rem;
+            height: 1.36em;
+        }
+
+        & span:nth-child(3) {
+            font-size: 5.7rem;
+            height: 1.04em;
+        }
+    }
+}

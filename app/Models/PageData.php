@@ -15,7 +15,7 @@ class PageData extends Model
         'thirteenth_screen_musics' => 'json',
         'fourteenth_screen_musics' => 'json',
         'sixteenth_screen_partners' => 'json',
-        'eghteenth_screen_socials' => 'json',
-        'eghteenth_screen_contacts' => 'json',
+        'eighteenth_screen_socials' => 'json',
+        'eighteenth_screen_contacts' => 'json',
     ];
 }

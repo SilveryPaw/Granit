@@ -1,0 +1,44 @@
+@use 'config/config' as *;
+
+.c-font-overpass {
+    font-family: OverpassMono;
+    text-transform: uppercase;
+    line-height: var(--lh, 1);
+}
+
+.c-font-moult {
+    font-family: Moul;
+}
+
+.c-font-motorblock {
+    font-family: Motorblock;
+    text-transform: uppercase;
+    line-height: var(--lh, 0.8em);
+}
+
+.c-container-content {
+    padding-left: var(--padding-horizontal);
+    padding-right: var(--padding-horizontal);
+}
+
+.c-screen {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.c-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

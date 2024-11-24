@@ -1,0 +1,21 @@
+@use '../config/config' as *;
+
+$block-name: 'b-sixth-screen';
+
+.#{$block-name} {
+    padding-top: 10rem;
+
+    &__text-container {
+        --lh: 1.2;
+
+        font-size: 2.8rem;
+        font-weight: 700;
+        text-align: justify;
+        opacity: 0;
+        transition: opacity 0.5s ease 1s;
+    }
+
+    &.enter &__text-container {
+        opacity: 1;
+    }
+}

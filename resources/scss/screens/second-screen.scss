@@ -1,0 +1,98 @@
+@use '../config/config' as *;
+
+$block-name: 'b-second-screen';
+
+.#{$block-name} {
+    position: relative;;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    &__text-container {
+        display: flex;
+        flex-direction: column;
+        gap: 6.7rem;
+        padding: 10rem var(--padding-horizontal);
+    }
+
+    &__title {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-weight: 700;
+        color: var(--color-gray);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        z-index: 1;
+
+        & span:nth-child(1) {
+            font-size: 3.4rem;
+            height: 1.1em;
+        }
+
+        & span:nth-child(2) {
+            font-size: 6rem;
+            height: 1.1em;
+        }
+    }
+
+    &__values-container {
+        position: relative;
+    }
+
+    &__value-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        transform: translateY(18vh) scale(0);
+        opacity: 0;
+        transition:
+            opacity var(--base-transition),
+            transform var(--base-transition);
+        
+        &.enter {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        &.leave {
+            opacity: 0;
+            transform: translateY(-18vh) scale(0);
+        }
+    }
+
+    &__value {
+        font-size: 7rem;
+        line-height: 400;
+        height: 1.2em;
+
+        & span {
+            font-family: Moul;
+        }
+    }
+
+    &__description {
+        font-size: 2.2rem;
+        height: 1.27em;
+    }
+
+    &__background {
+        position: absolute;
+        bottom: 0;
+        width: 66.4rem;
+        height: 40.5rem;
+        background-image: var(--bg-mobile);
+        background-repeat: no-repeat;
+        background-position: bottom right;
+        background-size: contain;
+        right: -5rem;
+        z-index: -1;
+    }
+}

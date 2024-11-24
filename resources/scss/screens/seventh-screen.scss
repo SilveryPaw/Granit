@@ -1,0 +1,74 @@
+@use '../config/config' as *;
+
+$block-name: 'b-seventh-screen';
+
+.#{$block-name} {
+    padding-top: 10rem;
+
+    &__content-container {
+        position: relative;
+        height: 53.2rem;
+    }
+
+    &__wrapper {
+        display: flex;
+        height: 100%;
+        width: max-content;
+        align-items: center;
+        padding-right: 4rem;
+        transform: translateX(100vw);
+        transition: transform 9s ease-in-out;
+    }
+
+    &__img {
+        width: 38rem;
+        height: 22.8rem;
+
+        &:nth-child(odd) {
+            transform: translateY(-15rem);
+        }
+
+        &:nth-child(even) {
+            transform: translateY(15rem);
+        }
+    }
+
+    &__title {
+        --lh: 1.2;
+
+        position: absolute;
+        font-size: 10rem;
+        top: 2rem;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        height: fit-content;
+        white-space: nowrap;
+        letter-spacing: 0.24em;
+        text-align: justify;
+        transform: translateX(100vw);
+        transition: transform 9s ease-in-out;
+        z-index: -1;
+    }
+
+    &__text {
+        --lh: 1.27;
+
+        position: absolute;
+        width: calc(100% - 2 * var(--padding-horizontal));
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-align: justify;
+        top: 80vh;
+    }
+
+    &.enter {
+        .#{$block-name}__wrapper {
+           transform: translateX(calc(-100% + 100vw - 3 * var(--padding-horizontal)));
+        }
+
+        .#{$block-name}__title {
+            transform: translateX(calc(-100% + 100vw - var(--padding-horizontal) - 2rem));
+        }
+    }
+}

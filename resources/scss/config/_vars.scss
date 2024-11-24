@@ -1,0 +1,13 @@
+@use 'mixins' as *;
+
+@mixin variables() {
+    --color-black: #000;
+    --color-white: #fff;
+    --color-gray: #555555;
+    --color-red: #c01c0c;
+
+    --padding-horizontal: 2rem;
+    --base-transition-function: ease;
+    --base-transition-time: 1s;
+    --base-transition: var(--base-transition-time) var(--base-transition-function);
+}
