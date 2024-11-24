@@ -1,0 +1,38 @@
+@use '../config/config' as *;
+
+$block-name: 'b-sixteenth-screen';
+
+.#{$block-name} {
+    padding-top: 10rem;
+
+    &__title {
+        font-weight: 700;
+        font-size: 5rem;
+        height: 1.1em;
+        text-align: center;
+        color: var(--color-gray);
+    }
+
+    &__chunks-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: fit-content;
+    }
+
+    &__partners-chunk {
+        position: relative;
+        width: 100vw;
+    }
+
+    &__partners-wrapper {
+        display: flex;
+        transition-timing-function: linear;
+    }
+
+    &__partner {
+        margin-right: 5rem;
+    }
+}

@@ -12,7 +12,7 @@ class MainController
         $this->data = PageData::first()->toArray();
         
         return view('page', [
-            'screens' => $this->getTenthScreen()
+            'screens' => $this->getFinalScreen()
         ]);
     }
 
@@ -141,6 +141,139 @@ class MainController
             'title' => preg_split('/\|/', $this->data['tenth_screen_title']),
             'bg' => $this->getBg('tenth')
         ]);
+    }
+
+    private function getEleventhScreen()
+    {
+        return view('screens.eleventh-screen', [
+            'title' => $this->data['eleventh_screen_title'],
+            'musics' => $this->getMuscis('eleventh'),
+            'nav' => $this->getNavIcons(),
+            'index' => 11,
+            'bg' => $this->getBg('eleventh')
+        ]);
+    }
+
+    private function getTwelfthScreen()
+    {
+        return view('screens.eleventh-screen', [
+            'title' => $this->data['twelfth_screen_title'],
+            'musics' => $this->getMuscis('twelfth'),
+            'nav' => $this->getNavIcons(),
+            'index' => 12,
+            'bg' => $this->getBg('twelfth')
+        ]);
+    }
+
+    private function getThirteenthScreen()
+    {
+        return view('screens.eleventh-screen', [
+            'title' => $this->data['thirteenth_screen_title'],
+            'musics' => $this->getMuscis('thirteenth'),
+            'nav' => $this->getNavIcons(),
+            'index' => 13,
+            'bg' => $this->getBg('thirteenth')
+        ]);
+    }
+
+    private function getFourteenthScreen()
+    {
+        return view('screens.eleventh-screen', [
+            'title' => $this->data['fourteenth_screen_title'],
+            'musics' => $this->getMuscis('fourteenth'),
+            'nav' => $this->getNavIcons(),
+            'index' => 14,
+            'bg' => $this->getBg('fourteenth')
+        ]);
+    }
+
+    private function getFifteenthScreen()
+    {
+        return view('screens.fifteenth-screen', [
+            'text' => [
+                'first' => $this->data['fifteenth_screen_first_title'],
+                'second' => $this->data['fifteenth_screen_second_title'],
+                'third' => $this->data['fifteenth_screen_third_title']
+            ],
+            'bg' => $this->getBg('fifteenth')
+        ]);
+    }
+
+    private function getSixteenthScreen()
+    {
+        $partners = [];
+        foreach($this->data['sixteenth_screen_partners'] as $partner) {
+            $partners[] = [
+                'icon' => \Storage::disk('public')->get($partner['icon']),
+                'link' => $partner['link']
+            ];
+        }
+        $chunks = array_chunk($partners, ceil(count($partners) / 2));
+        return view('screens.sixteenth-screen', [
+            'title' => $this->data['sixteenth_screen_title'],
+            'partners' => [
+                'chunk1' => $chunks[0],
+                'chunk2' => $chunks[1]
+            ]
+        ]);
+    }
+
+    private function getFinalScreen()
+    {
+        $socials = [];
+        foreach($this->data['eighteenth_screen_socials'] as $social) {
+            $socials[] = [
+                'title' => $social['title'],
+                'link' => $social['link'],
+                'icon' => \Storage::disk('public')->get($social['icon'])
+            ];
+        }
+
+        foreach($this->data['eighteenth_screen_contacts'] as $contact) {
+            if(preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $contact['link'])) {
+                $href = 'mailto:' . $contact['link'];
+            } else if (preg_match('/^(\+7|8)\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/', $contact['link'])) {
+                $href = 'tel:' . $contact['link'];
+            } else {
+                $href = $contact['link'];
+            }
+
+            $contacts[] = [
+                'title' => $contact['title'],
+                'linkText' => $contact['link'],
+                'href' => $href
+            ];
+        }
+
+        return view('screens.final-screen', [
+            'title' => $this->data['eighteenth_screen_title'],
+            'socials' => $socials,
+            'contacts' => $contacts,
+            'copyright' => $this->data['eighteenth_screen_label']
+        ]);
+    }
+
+    private function getNavIcons()
+    {
+        return [
+            'play' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/play.svg'),
+            'next' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/next.svg')
+        ];
+    }
+
+    private function getMuscis($screen)
+    {
+        $muscis = [];
+        $key = $screen . '_screen_musics';
+        foreach($this->data[$key] as $music) {
+            $musics[] = [
+                'img' => \Storage::disk('public')->url($music['image']),
+                'src' => \Storage::disk('public')->url($music['music']),
+                'author' => $music['artist'],
+                'genre' => $music['genre']
+            ];
+        }
+        return $musics;
     }
 
     private function getBg($screen)

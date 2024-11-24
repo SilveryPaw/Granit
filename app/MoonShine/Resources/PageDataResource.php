@@ -159,6 +159,7 @@ class PageDataResource extends ModelResource
                             ->hideOnIndex(),
                         Json::make('Музыка', 'eleventh_screen_musics')
                             ->fields([
+                                Image::make('Изображение', 'image'),
                                 Text::make('Исполнитель', 'artist'),
                                 Text::make('Жанр', 'genre'),
                                 File::make('Музыка файлом', 'music')
@@ -174,6 +175,7 @@ class PageDataResource extends ModelResource
                             ->hideOnIndex(),
                         Json::make('Музыка', 'twelfth_screen_musics')
                             ->fields([
+                                Image::make('Изображение', 'image'),
                                 Text::make('Исполнитель', 'artist'),
                                 Text::make('Жанр', 'genre'),
                                 File::make('Музыка файлом', 'music')
@@ -189,6 +191,7 @@ class PageDataResource extends ModelResource
                             ->hideOnIndex(),
                         Json::make('Музыка', 'thirteenth_screen_musics')
                             ->fields([
+                                Image::make('Изображение', 'image'),
                                 Text::make('Исполнитель', 'artist'),
                                 Text::make('Жанр', 'genre'),
                                 File::make('Музыка файлом', 'music')
@@ -204,6 +207,7 @@ class PageDataResource extends ModelResource
                             ->hideOnIndex(),
                         Json::make('Музыка', 'fourteenth_screen_musics')
                             ->fields([
+                                Image::make('Изображение', 'image'),
                                 Text::make('Исполнитель', 'artist'),
                                 Text::make('Жанр', 'genre'),
                                 File::make('Музыка файлом', 'music')
@@ -229,7 +233,12 @@ class PageDataResource extends ModelResource
                     Tab::make('Шестнадцатый экран', [
                         Text::make('Заголовок', 'sixteenth_screen_title')
                             ->hideOnIndex(),
-                        Text::make('Партнёры', 'sixteenth_screen_partners')
+                        Json::make('Партнёры', 'sixteenth_screen_partners')
+                            ->fields([
+                                Image::make('Иконка', 'icon'),
+                                Text::make('Ссылка', 'link'),
+                            ])
+                            ->removable()
                             ->hideOnIndex(),
                         Image::make('Задний фон', 'sixteenth_screen_bg')
                             ->hideOnIndex(),
@@ -243,7 +252,7 @@ class PageDataResource extends ModelResource
                             ->fields([
                                 Text::make('Заголовок иконки', 'title'),
                                 Text::make('Ссылка на соц. сеть', 'link'),
-                                File::make('Иконка в формате svg', 'icon')
+                                Image::make('Иконка в формате svg', 'icon')
                                     ->allowedExtensions(['svg'])
                             ]),
                         Json::make('Контакты', 'eighteenth_screen_contacts')

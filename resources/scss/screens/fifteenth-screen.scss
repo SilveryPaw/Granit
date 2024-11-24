@@ -1,0 +1,36 @@
+@use '../config/config' as *;
+
+$block-name: 'b-fifteenth-screen';
+
+.#{$block-name} {
+    padding-top: 26.7rem;
+
+    &__title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__part {
+        &.first {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 1.6rem;
+        }
+
+        &.second {
+            font-size: 7rem;
+            height: 1em;
+            font-weight: 400;
+            margin-bottom: 0.2rem;
+        }
+
+        &.third {
+            --lh: 1.4;
+
+            font-size: 3.5rem;
+            font-weight: 700;
+            height: 1.27em;
+        }
+    }
+}
