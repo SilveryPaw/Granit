@@ -1,0 +1,40 @@
+@use '../config/config' as *;
+
+$block-name: 'b-buy-button';
+
+.#{$block-name} {
+    font-weight: 600;
+    position: fixed;
+    width: 30.4rem;
+    height: 4.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    bottom: 2.4rem;
+    left: 0;
+    right: 0;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    font-size: 2.2rem;
+    line-height: 1.27;
+
+    &::after,
+    &::before {
+        position: absolute;
+        height: 4.8rem;
+        width: 2.4rem;
+        background-color: var(--color-white);
+        content: "";
+    }
+
+    &::before {
+        left: -2.4rem;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
+    }
+
+    &::after {
+        right: -2.4rem;
+        clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
+    }
+}

@@ -44,6 +44,10 @@ $block-name: 'b-fourth-screen';
             left: 0;
             right: 0;
             margin: 0 auto;
+            
+            & img {
+                margin: auto;
+            }
         }
 
         &.bottom {

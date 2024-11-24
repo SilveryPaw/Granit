@@ -10,9 +10,30 @@ class MainController
     public function index()
     {
         $this->data = PageData::first()->toArray();
-        
+
         return view('page', [
-            'screens' => $this->getFinalScreen()
+            'screens' => [
+                'first' => $this->getFirstScreen(),
+                'second' => $this->getSecondScreen(),
+                'third' => $this->getThirdScreen(),
+                'fourth' => $this->getFourthScreen(),
+                'fifth' => $this->getFifthScreen(),
+                'sixth' => $this->getSixthScreen(),
+                'white' => $this->getWhiteScreen(),
+                'seventh' => $this->getSeventhScreen(),
+                'eighth' => $this->getEighthScreen(),
+                'ninth' => $this->getNinthScreen(),
+                'tenth' => $this->getTenthScreen(),
+                'eleventh' => $this->getEleventhScreen(),
+                'twelfth' => $this->getTwelfthScreen(),
+                'thirteenth' => $this->getThirteenthScreen(),
+                'fourteenth' => $this->getFourteenthScreen(),
+                'fifteenth' => $this->getFifteenthScreen(),
+                'sixteenth' => $this->getSixteenthScreen(),
+                'final' => $this->getFinalScreen()
+            ],
+            'header' => $this->getHeaderBlock(),
+            'buyButton' => $this->getBuyButton()
         ]);
     }
 
@@ -250,6 +271,22 @@ class MainController
             'socials' => $socials,
             'contacts' => $contacts,
             'copyright' => $this->data['eighteenth_screen_label']
+        ]);
+    }
+
+    private function getBuyButton()
+    {
+        return view('parts.buy-button', [
+            'text' => $this->data['buy_text'],
+            'link' => $this->data['buy_link']
+        ]);
+    }
+
+    private function getHeaderBlock()
+    {
+        return view('parts.header', [
+            'logo' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/logo.svg'),
+            'menu' => []
         ]);
     }
 

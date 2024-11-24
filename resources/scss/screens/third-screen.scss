@@ -58,7 +58,7 @@ $block-name: 'b-third-screen';
         }
     }
 
-    &.active &__text {
+    &.enter &__text {
         transform: translateY(0);
         color: transparent;
         transition:
@@ -68,18 +68,5 @@ $block-name: 'b-third-screen';
         &.actual {
             color: var(--color-white);
         }
-    }
-
-    &__background {
-        position: absolute;
-        width: 134.5rem;
-        height: 62.9rem;
-        background-image: var(--bg-mobile);
-        background-repeat: no-repeat;
-        background-position: bottom right;
-        background-size: contain;
-        bottom: -7.6rem;
-        right: -4.5rem;
-        z-index: -1;
     }
 }

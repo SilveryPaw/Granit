@@ -25,8 +25,8 @@
             @endforeach
         </div>
     </div>
-    <div
-        class="{{ $blockName }}__background"
-        style="--bg-mobile:url({{ $bg['mobile'] }});--bg-desk:url({{ $bg['desk'] }})"
-    ></div>
+    <picture class="{{ $blockName }}__background c-background">
+        <source srcset="{{ $bg['mobile'] }}" media="(max-width:767px)"/>
+        <img src="{{ $bg['desk'] }}"/>
+    </picture>
 </div>
