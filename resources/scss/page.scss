@@ -34,11 +34,38 @@ $block-name: 'b-page';
             z-index: 1;
         }
 
-        &.enter-polygon {
+        &.enter-polygon-bottom {
+            --offset: 50%;
+            --scale: 0;
+
             transform: translateY(0);
+            transition: clip-path var(--anim-delay, 1s);
             opacity: 1;
             visibility: visible;
             z-index: 1;
+            clip-path: $polygonBottom;
+        }
+
+        &.enter-polygon-center {
+            --scale: 0;
+
+            transform: translateY(0);
+            transition: clip-path var(--anim-delay, 1s);
+            opacity: 1;
+            visibility: visible;
+            z-index: 1;
+            clip-path: $polygonCentered;
+        }
+
+        &.leave-polygon-center {
+            --scale: 5;
+
+            transform: translateY(0);
+            transition: clip-path var(--anim-delay, 1s);
+            opacity: 1;
+            visibility: visible;
+            z-index: 1;
+            clip-path: $polygonCentered;
         }
 
         &.leave {
@@ -53,6 +80,7 @@ $block-name: 'b-page';
             opacity: 1;
             visibility: visible;
             z-index: 0;
+            animation: indexAnimDown var(--anim-delay, 1s);
         }
 
         &.in-slide {
@@ -70,8 +98,16 @@ $block-name: 'b-page';
         }
 
         &.in-polygon-bottom {
+            --scale: 5;
+            --offset: 50%;
+
             transition: clip-path var(--anim-delay, 1s);
-            clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);
+        }
+
+        &.in-polygon-center {
+            --scale: 5;
+
+            transition: clip-path var(--anim-delay, 1s);
         }
 
         &.out-scale-under {
@@ -93,6 +129,64 @@ $block-name: 'b-page';
             &.leave-back {
                 transform: translateY(-50%);
             }
+        }
+
+        &.out-no-leave {
+            &.leave,
+            &.leave-back {
+                transform: translateY(0);
+            }
+        }
+
+        &.out-hide {
+            &.leave,
+            &.leave-back {
+                transform: translateY(0);
+                transition: opacity 0s linear var(--next-anim-delay);
+                opacity: 0;
+            }
+        }
+
+        &.out-fade {
+            &.leave,
+            &.leave-back {
+                transition: opacity var(--anim-delay) ease-in-out;
+                transform: translateY(0);
+                opacity: 0;
+            }
+        }
+
+        &.out-content-anim-only {
+            &.leave,
+            &.leave-back {
+                transform: translate(0);
+
+                & [data-content] {
+                    transition: transform var(--anim-delay) ease-in-out;
+                    opacity: 1;
+                    visibility: visible;
+                    z-index: 0;
+                }
+            }
+
+            &.leave [data-content] {
+                transform: translateY(100%);
+            }
+
+            &.leave-back [data-content] {
+                transform: translateY(-100%);
+            }
+        }
+
+        &.out-polygon-center {
+            --scale: 0;
+
+            transition: clip-path var(--anim-delay, 1s);
+            animation: indexAnimDown var(--anim-delay, 1s);
+        }
+
+        &.no-anim {
+            transition: none !important;
         }
 
         &--third {
@@ -127,6 +221,20 @@ $block-name: 'b-page';
 
             to {
                 z-index: 2;
+            }
+        }
+
+        @keyframes indexAnimDown {
+            from {
+                z-index: 2;
+            }
+
+            99% {
+                z-index: 2;
+            }
+
+            to {
+                z-index: -1;
             }
         }
     }

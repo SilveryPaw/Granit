@@ -17,7 +17,6 @@ $block-name: 'b-seventh-screen';
         align-items: center;
         padding-right: 4rem;
         transform: translateX(100vw);
-        transition: transform 9s ease-in-out;
     }
 
     &__img {
@@ -47,13 +46,13 @@ $block-name: 'b-seventh-screen';
         letter-spacing: 0.24em;
         text-align: justify;
         transform: translateX(100vw);
-        transition: transform 9s ease-in-out;
         z-index: -1;
     }
 
     &__text {
         --lh: 1.27;
 
+        opacity: 0;
         position: absolute;
         width: calc(100% - 2 * var(--padding-horizontal));
         font-size: 1.8rem;
@@ -63,11 +62,18 @@ $block-name: 'b-seventh-screen';
     }
 
     &.enter {
+        .#{$block-name}__text {
+            opacity: 1;
+            transition: opacity 3s;
+        }
+
         .#{$block-name}__wrapper {
-           transform: translateX(calc(-100% + 100vw - 3 * var(--padding-horizontal)));
+            transition: transform 9s ease-in-out;
+            transform: translateX(calc(-100% + 100vw - 3 * var(--padding-horizontal)));
         }
 
         .#{$block-name}__title {
+            transition: transform 9s ease-in-out;
             transform: translateX(calc(-100% + 100vw - var(--padding-horizontal) - 2rem));
         }
     }

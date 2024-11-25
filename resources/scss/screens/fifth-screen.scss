@@ -32,11 +32,11 @@ $block-name: 'b-fifth-screen';
     }
 
     & &__background {
-        transform: translateX(10rem);
+        transform: translateX(3rem);
         opacity: 0;
         transition:
-            opacity 0.6s ease calc(var(--base-transition-time) + 2.4s),
-            transform 0.6s ease calc(var(--base-transition-time) + 2.4s);
+            opacity 0.6s ease calc(var(--base-transition-time) + 2.15s),
+            transform 0.6s ease calc(var(--base-transition-time) + 2.15s);
         
             & img {
                 height: auto;

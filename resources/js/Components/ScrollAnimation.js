@@ -13,6 +13,9 @@ export default class ScrollAnimation
         this.currentClass = options.currentClass ?? 'current';
 		this.nextClass = options.nextClass ?? 'next';
         this.header = document.querySelector('.b-header');
+        if(options.container) {
+            this.container = document.querySelector(`.${options.container}`);
+        }
 
         this.init();
     }
@@ -20,7 +23,9 @@ export default class ScrollAnimation
     init() {
 		document.addEventListener('keyup', this.keyUpFunction.bind(this));
 		document.addEventListener('wheel', this.scrollFunction.bind(this));
-		document.addEventListener('click', this.clickFunction.bind(this));
+		if(this.container) {
+            this.container.addEventListener('click', this.clickFunction.bind(this));
+        }
 		this.updateScreens();
     }
 
@@ -40,8 +45,34 @@ export default class ScrollAnimation
 		}
 	}
 
-    clickFunction() {
+    clickFunction(event) {
+        const activeScreen = this.#screens[this.activeScreen];
+        if(activeScreen.enabledPrevents && activeScreen.isPrevent(event.target)) return;
+
         this.changeScreen(true);
+    }
+
+    toScreen(index) {
+        this.isAnimating = true;
+
+        this.#screens.forEach((screen, id) => {
+            screen.clearClasses();
+            screen.container.classList.add('no-anim');
+            setTimeout(function() {
+                screen.container.classList.remove('no-anim');
+            }, 500);
+            if(screen.container.dataset.index == index) {
+                this.prevScreen = id - 1;
+                this.activeScreen = id;
+                this.nextScreen = id + 1;
+            }
+        });
+
+        setTimeout(function() {
+            this.isAnimating = false;
+        }, 500)
+
+        this.updateScreens();
     }
 
     changeScreen(next = true) {
@@ -93,6 +124,8 @@ export default class ScrollAnimation
                 screen.enter();
             } else if(index === this.nextScreen) {
                 screen.leave();
+            } else if (index < this.activeScreen - 2) {
+                screen.clearClasses();
             }
 		});
 	}

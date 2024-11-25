@@ -3,6 +3,7 @@
 $block-name: 'b-header';
 
 .#{$block-name} {
+    overflow: visible;
     position: absolute;
     display: flex;
     justify-content: space-between;
@@ -13,10 +14,16 @@ $block-name: 'b-header';
     transform: translateY(0);
     transition: transform var(--base-transition-time) ease-in-out;
 
+    &__logo {
+        position: relative;
+        z-index: 1;
+    }
+
     &__burger-button {
         position: relative;
         width: 4.8rem;
         height: 3.7rem;
+        z-index: 1;
 
         &::before,
         &::after {
@@ -25,6 +32,7 @@ $block-name: 'b-header';
             height: 0.4rem;
             content: "";
             background-color: var(--color-white);
+            transition: transform 0.5s;
         }
 
         &::before {
@@ -34,11 +42,43 @@ $block-name: 'b-header';
         &::after {
             bottom: 1rem;
         }
+
+        &.active {
+            &::before {
+                transform: translateY(0.65rem) rotate(45deg);
+            }
+
+            &::after {
+                transform: translateY(-0.65rem) rotate(-45deg);
+            }
+        }
     }
 
     &__burger-menu {
-        display: none;
+        padding-top: 15rem;
+        background-color: var(--color-black);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        visibility: hidden;
         position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        gap: 2rem;
+        transition: opacity 0.5s ease, visibility 0s linear 1s;
+
+        &.active {
+            transition: opacity 0.5s ease;
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    &__burger-item {
+        font-size: 3.2rem;
     }
 
     &.hide-mobile {

@@ -133,10 +133,6 @@ class MainController
             'title' => $this->data['eight_screen_title'],
             'text' => $this->data['eight_screen_text'],
             'imgs' => $imgs,
-            'bg' => [
-                'mobile' => '/imgs/seventh-screen/bgm.png',
-                'desk' => ''
-            ]
         ]);
     }
 
@@ -279,7 +275,12 @@ class MainController
     {
         return view('parts.header', [
             'logo' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/logo.svg'),
-            'menu' => []
+            'menu' => [
+                'third' => 'Шоу',
+                'tenth' => 'Лайнап',
+                'sixteenth' => 'Партнёры',
+                'final' => 'Контакты'
+            ]
         ]);
     }
 

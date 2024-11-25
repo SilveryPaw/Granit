@@ -12,7 +12,7 @@
         <div class="{{ $blockName }}__burger-menu">
             @foreach($menu as $key => $item)
                 <button
-                    class="{{ $blockName }}__burger-item"
+                    class="{{ $blockName }}__burger-item c-font-overpass"
                     data-index="{{ $key }}"
                 >
                     {!! $item !!}
