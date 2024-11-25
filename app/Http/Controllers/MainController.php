@@ -33,7 +33,12 @@ class MainController
                 'final' => $this->getFinalScreen()
             ],
             'header' => $this->getHeaderBlock(),
-            'buyButton' => $this->getBuyButton()
+            'buyButton' => $this->getBuyButton(),
+            'seo' => [
+                'title' => $this->data['seo_title'] ?? null,
+                'description' => $this->data['seo_description'] ?? null,
+                'keywords' => $this->data['seo_keywords'] ?? null
+            ]
         ]);
     }
 
@@ -157,7 +162,7 @@ class MainController
     {
         return view('screens.eleventh-screen', [
             'title' => $this->data['eleventh_screen_title'],
-            'musics' => $this->getMuscis('eleventh'),
+            'musics' => $this->getMusics('eleventh'),
             'nav' => $this->getNavIcons(),
             'index' => 11,
             'bg' => $this->getBg('eleventh')
@@ -168,7 +173,7 @@ class MainController
     {
         return view('screens.eleventh-screen', [
             'title' => $this->data['twelfth_screen_title'],
-            'musics' => $this->getMuscis('twelfth'),
+            'musics' => $this->getMusics('twelfth'),
             'nav' => $this->getNavIcons(),
             'index' => 12,
             'bg' => $this->getBg('twelfth')
@@ -179,7 +184,7 @@ class MainController
     {
         return view('screens.eleventh-screen', [
             'title' => $this->data['thirteenth_screen_title'],
-            'musics' => $this->getMuscis('thirteenth'),
+            'musics' => $this->getMusics('thirteenth'),
             'nav' => $this->getNavIcons(),
             'index' => 13,
             'bg' => $this->getBg('thirteenth')
@@ -190,7 +195,7 @@ class MainController
     {
         return view('screens.eleventh-screen', [
             'title' => $this->data['fourteenth_screen_title'],
-            'musics' => $this->getMuscis('fourteenth'),
+            'musics' => $this->getMusics('fourteenth'),
             'nav' => $this->getNavIcons(),
             'index' => 14,
             'bg' => $this->getBg('fourteenth')
@@ -288,18 +293,22 @@ class MainController
     {
         return [
             'play' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/play.svg'),
+            'pause' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/pause.svg'),
             'next' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/next.svg')
         ];
     }
 
-    private function getMuscis($screen)
+    private function getMusics($screen)
     {
         $muscis = [];
         $key = $screen . '_screen_musics';
         foreach($this->data[$key] as $music) {
+            if(isset($music['music'])) {
+                $src = \Storage::disk('public')->url($music['music']);
+            }
             $musics[] = [
                 'img' => \Storage::disk('public')->url($music['image']),
-                'src' => \Storage::disk('public')->url($music['music']),
+                'src' => $src ?? null,
                 'author' => $music['artist'],
                 'genre' => $music['genre']
             ];

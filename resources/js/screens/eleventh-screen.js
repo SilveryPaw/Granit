@@ -4,6 +4,8 @@ import {Navigation} from 'swiper/modules';
 const blockName = 'b-eleventh-screen';
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('here');
+
     document.querySelectorAll(`.${blockName}`).forEach(block => {
         const swiperBlock = block.querySelector(`.${blockName}__music-slider`);
         const index = block.dataset.index;
@@ -41,14 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const playing = block.querySelector(`.${blockName}__music-sound.active`);
             const index = slider.realIndex;
             const music = slides[index].querySelector(`.${blockName}__music-sound`);
+            const container = block.querySelector(`.${blockName}__controls`);
+            console.log(container);
             if(playing) {
                 playing.pause();
                 playing.currentTime = 0;
                 playing.classList.remove('active');
+                container.classList.remove('playing');
             }
             if(playing !== music) {
                 music.play();
                 music.classList.add('active');
+                container.classList.add('playing');
             }
         });
     });

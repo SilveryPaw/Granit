@@ -163,7 +163,9 @@ class PageDataResource extends ModelResource
                                 Text::make('Исполнитель', 'artist'),
                                 Text::make('Жанр', 'genre'),
                                 File::make('Музыка файлом', 'music')
+                                    ->removable()
                             ])
+                            ->removable()
                             ->hideOnIndex(),
                         Image::make('Задний фон', 'eleventh_screen_bg')
                             ->hideOnIndex(),
@@ -179,7 +181,9 @@ class PageDataResource extends ModelResource
                                 Text::make('Исполнитель', 'artist'),
                                 Text::make('Жанр', 'genre'),
                                 File::make('Музыка файлом', 'music')
+                                    ->removable()
                             ])
+                            ->removable()
                             ->hideOnIndex(),
                         Image::make('Задний фон', 'twelfth_screen_bg')
                             ->hideOnIndex(),
@@ -195,7 +199,9 @@ class PageDataResource extends ModelResource
                                 Text::make('Исполнитель', 'artist'),
                                 Text::make('Жанр', 'genre'),
                                 File::make('Музыка файлом', 'music')
+                                    ->removable()
                             ])
+                            ->removable()
                             ->hideOnIndex(),
                         Image::make('Задний фон', 'thirteenth_screen_bg')
                             ->hideOnIndex(),
@@ -211,7 +217,9 @@ class PageDataResource extends ModelResource
                                 Text::make('Исполнитель', 'artist'),
                                 Text::make('Жанр', 'genre'),
                                 File::make('Музыка файлом', 'music')
+                                    ->removable()
                             ])
+                            ->removable()
                             ->hideOnIndex(),
                         Image::make('Задний фон', 'fourteenth_screen_bg')
                             ->hideOnIndex(),

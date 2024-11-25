@@ -55,11 +55,44 @@ $block-name: 'b-eleventh-screen';
     }
 
     &__controls {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 35rem;
         flex-shrink: 0;
+    }
+
+    &__pause {
+        position: absolute;
+        display: flex;
+        width: fit-content;
+        height: fit-content;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        opacity: 0;
+        transition: opacity var(--base-transition);
+        z-index: 0;
+    }
+
+    &__play {
+        position: relative;
+        opacity: 1;
+        transition: opacity var(--base-transition);
+        z-index: 1;
+    }
+
+    &__controls.playing {
+        .#{$block-name}__play {
+            opacity: 0;
+        }
+
+        .#{$block-name}__pause {
+            opacity: 1;
+        }
     }
 
     &__nav-elem {

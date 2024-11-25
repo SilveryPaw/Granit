@@ -31,6 +31,7 @@
             <div class="{{ $blockName }}__controls" data-index="{{ $index }}">
                 <div class="{{ $blockName }}__nav-elem prev">{!! $nav['next'] !!}</div>
                 <div class="{{ $blockName }}__play">{!! $nav['play'] !!}</div>
+                <div class="{{ $blockName }}__pause">{!! $nav['pause'] !!}</div>
                 <div class="{{ $blockName }}__nav-elem next">{!! $nav['next'] !!}</div>
             </div>
         </div>
