@@ -21,8 +21,8 @@ export default class ScrollAnimation
     }
 
     init() {
-		document.addEventListener('keyup', this.keyUpFunction.bind(this));
-		document.addEventListener('wheel', this.scrollFunction.bind(this));
+		// document.addEventListener('keyup', this.keyUpFunction.bind(this));
+		// document.addEventListener('wheel', this.scrollFunction.bind(this));
 		if(this.container) {
             this.container.addEventListener('click', this.clickFunction.bind(this));
         }

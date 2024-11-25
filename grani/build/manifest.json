@@ -1,0 +1,30 @@
+{
+  "public/fonts/Motorblock.ttf": {
+    "file": "assets/Motorblock-CEpRx_xX.ttf",
+    "src": "public/fonts/Motorblock.ttf"
+  },
+  "public/fonts/Moul-Regular.ttf": {
+    "file": "assets/Moul-Regular-fIffBCU8.ttf",
+    "src": "public/fonts/Moul-Regular.ttf"
+  },
+  "public/fonts/OverpassMono.ttf": {
+    "file": "assets/OverpassMono-CPI2fCBO.ttf",
+    "src": "public/fonts/OverpassMono.ttf"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CmZS2f2i.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-BE_gJGdw.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/scss/app.scss": {
+    "file": "assets/app-IyPcGjOO.css",
+    "src": "resources/scss/app.scss",
+    "isEntry": true
+  }
+}

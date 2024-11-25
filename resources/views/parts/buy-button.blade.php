@@ -2,10 +2,8 @@
     $blockName = 'b-buy-button';
 @endphp
 
-<a
+<button
     class="{{ $blockName }}"
-    href="{{ $link }}"
-    target="_blank"
 >
     {!! $text !!}
-</a>
+</button>

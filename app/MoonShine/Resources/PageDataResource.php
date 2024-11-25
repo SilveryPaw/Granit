@@ -44,8 +44,6 @@ class PageDataResource extends ModelResource
                     ]),
                     Tab::make('Основные данные', [
                         Text::make('Текст кнопки "Купить"', 'buy_text')
-                            ->hideOnIndex(),
-                        Text::make('Ссылка кнопки "Купить"', 'buy_link')
                             ->hideOnIndex()
                     ]),
                     Tab::make('Первый экран', [
