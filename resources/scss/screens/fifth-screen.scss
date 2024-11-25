@@ -5,6 +5,7 @@ $block-name: 'b-fifth-screen';
 .#{$block-name} {
     position: relative;
     padding-top: 10rem;
+    overflow: visible !important;
 
     &__text-container {
         display: flex;
@@ -30,7 +31,24 @@ $block-name: 'b-fifth-screen';
         }
     }
 
+    & &__background {
+        transform: translateX(10rem);
+        opacity: 0;
+        transition:
+            opacity 0.6s ease calc(var(--base-transition-time) + 2.4s),
+            transform 0.6s ease calc(var(--base-transition-time) + 2.4s);
+        
+            & img {
+                height: auto;
+            }
+    }
+
     &.enter &__text {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    &.enter &__background {
         transform: translateX(0);
         opacity: 1;
     }

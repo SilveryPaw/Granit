@@ -90,10 +90,7 @@ class MainController
     {
         return view('screens.fifth-screen', [
             'text' => preg_split('/\|/', $this->data['fifth_screen_text']),
-            'bg' => [
-                'mobile' => '',
-                'desk' => ''
-            ]
+            'bg' => $this->getBg('fifth')
         ]);
     }
 
@@ -101,10 +98,6 @@ class MainController
     {
         return view('screens.sixth-screen', [
             'text' => $this->data['sixth_screen_text'],
-            'bg' => [
-                'mobile' => '',
-                'desk' => ''
-            ]
         ]);
     }
 

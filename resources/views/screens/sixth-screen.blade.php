@@ -6,8 +6,10 @@
     <div class="{{ $blockName }}__text-container c-font-overpass">
         {!! $text !!}
     </div>
-    <picture class="{{ $blockName }}__background c-background">
-        <source srcset="{{ $bg['mobile'] }}" media="(max-width:767px)"/>
-        <img src="{{ $bg['desk'] }}"/>
-    </picture>
+    @isset($bg)
+        <picture class="{{ $blockName }}__background c-background">
+            <source srcset="{{ $bg['mobile'] }}" media="(max-width:767px)"/>
+            <img src="{{ $bg['desk'] }}"/>
+        </picture>
+    @endisset
 </div>

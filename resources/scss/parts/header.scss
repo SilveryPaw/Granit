@@ -8,6 +8,10 @@ $block-name: 'b-header';
     justify-content: space-between;
     align-items: center;
     padding-top: 2rem;
+    width: 100vw;
+    z-index: 3;
+    transform: translateY(0);
+    transition: transform var(--base-transition-time) ease-in-out;
 
     &__burger-button {
         position: relative;
@@ -35,5 +39,9 @@ $block-name: 'b-header';
     &__burger-menu {
         display: none;
         position: absolute;
+    }
+
+    &.hide-mobile {
+        transform: translateY(-100vh);
     }
 }

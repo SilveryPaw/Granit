@@ -18,6 +18,7 @@ $block-name: 'b-buy-button';
     color: var(--color-black);
     font-size: 2.2rem;
     line-height: 1.27;
+    z-index: 3;
 
     &::after,
     &::before {
