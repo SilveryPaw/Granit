@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     enterAnimClass: 'in-fade-under',
                     leaveAnimClass: 'out-scale-under',
                     leaveBackAnimClass: 'out-scale-under',
+                    saveChildrenClassTillAnimBack: true,
+                    saveChildrenClassTillAnimForward: true,
                     saveChildrenClassTillAnim: true
                 }
             ),
@@ -36,7 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
             new Screen(
                 `${selectorPart}fifth`,
                 {
-                    delayTime: 4400,
+                    firstTimeDelay: 4400,
+                    delayTime: 1500,
                     leaveBackAnimClass: 'out-half-leave',
                     saveChildrenClassPermanent: true
                 }
@@ -65,16 +68,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     enterAnimClass: 'in-fade-under',
                     leaveAnimClass: 'out-fade',
                     leaveBackAnimClass: 'out-content-anim-only',
+                    saveChildrenClassTillAnimForward: true,
                     saveChildrenClassTillAnim: true,
-                    transitionTime: 1500
+                    saveChildrenClassTillAnimBack: true,
+                    transitionTime: 1500,
+                    delayTime: 1500,
                 }
             ),
             new Screen(
                 `${selectorPart}eighth`,
                 {
                     leaveBackAnimClass: 'out-no-leave',
+                    saveChildrenClassTillAnimForward: true,
+                    saveChildrenClassTillAnimBack: true,
                     saveChildrenClassTillAnim: true,
                     transitionTime: 1500,
+                    delayTime: 1500,
                     nextAnimTime: 4000
                 }
             ),

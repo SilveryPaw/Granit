@@ -14,11 +14,18 @@ export default class Screen
     #stages = {};
     #stagesBlocks;
     #currentStage;
+    #stagesAtStart = false;
+    #stagesAtEnd = false;
     #stagesActive = false;
     #saveChildrenClassTillAnim = false;
+    #saveChildrenClassTillAnimBack = false;
+    #saveChildrenClassTillAnimForward = false;
     #saveChildrenClassPermanent = false;
     #enablePrevents = false;
     #prevents = [];
+    #leaveBackTimeout;
+    #leaveTimeout;
+    #enterTimeout;
 
 
     constructor(screenSelector, options = {})
@@ -27,6 +34,7 @@ export default class Screen
         this.transitionTime = options.transitionTime ?? 1000;
         this.transitionTimeLeaveBack = options.transitionTimeLeaveBack ?? this.transitionTime;
         this.delayTime = options.delayTime ?? this.transitionTime;
+        this.firstTimeDelay = options.firstTimeDelay ?? false;
         this.nextAnimTime = options.nextAnimTime ?? this.transitionTime;
         this.animClassesDelay = options.animClassesDelay ?? 0;
         
@@ -58,6 +66,14 @@ export default class Screen
         
         if(options.leaveBackAnimClass) {
             this.#leaveBackAnimClass = options.leaveBackAnimClass;
+        }
+
+        if(options.saveChildrenClassTillAnimBack) {
+            this.#saveChildrenClassTillAnimBack = options.saveChildrenClassTillAnimBack;
+        }
+
+        if(options.saveChildrenClassTillAnimForward) {
+            this.#saveChildrenClassTillAnimForward = options.saveChildrenClassTillAnimForward;
         }
 
         if(options.saveChildrenClassTillAnim) {
@@ -107,6 +123,26 @@ export default class Screen
         return this.#stagesActive;
     }
 
+    get stagesAtEnd()
+    {
+        return this.#stagesAtEnd;
+    }
+
+    get stagesAtStart()
+    {
+        return this.#stagesAtStart;
+    }
+
+    get child()
+    {
+        return this.#childContainer;
+    }
+
+    get leaveClass()
+    {
+        return this.#leaveClass;
+    }
+
     get enabledPrevents()
     {
         return this.#enablePrevents;
@@ -143,8 +179,27 @@ export default class Screen
         this.#stagesActive = true;
     }
 
+    prevStage()
+    {
+        this.#stagesAtEnd = false;
+        if(this.#currentStage <= this.#stages.count - 1) {
+            this.#stagesBlocks[this.#currentStage].classList.remove(this.#stages.activeClass ?? 'enter');
+        }
+
+        this.#currentStage -= 1;
+        if(this.#currentStage >= 0) {
+            this.#stagesBlocks[this.#currentStage].classList.add(this.#stages.activeClass ?? 'enter');
+            this.#stagesBlocks[this.#currentStage].classList.remove(this.#stages.inactiveClass ?? 'leave');
+        }
+
+        if(this.#currentStage <= 0) {
+            this.#stagesAtStart = true;
+        }
+    }
+
     nextStage()
     {
+        this.#stagesAtStart = false;
         if(this.#currentStage >= 0) {
             this.#stagesBlocks[this.#currentStage].classList.remove(this.#stages.activeClass ?? 'enter');
             this.#stagesBlocks[this.#currentStage].classList.add(this.#stages.inactiveClass ?? 'leave');
@@ -155,7 +210,7 @@ export default class Screen
         this.#stagesBlocks[this.#currentStage].classList.remove(this.#stages.inactiveClass ?? 'leave');
 
         if(this.#currentStage >= this.#stages.count - 1) {
-            this.#stagesActive = false;
+            this.#stagesAtEnd = true;
         }
     }
 
@@ -169,16 +224,25 @@ export default class Screen
     enter()
     {
         this.#screen.style.setProperty('--anim-delay', this.transitionTime + 'ms');
-        this.#screen.classList.add(this.#enterClass);
         this.#screen.classList.remove(this.#leaveClass);
         this.#screen.classList.remove(this.#leaveBackClass);
+        this.#screen.classList.add(this.#enterClass);
+
+        if(this.#leaveTimeout) {
+            window.clearTimeout(this.#leaveTimeout);
+        }
+        if(this.#leaveBackTimeout) {
+            window.clearTimeout(this.#leaveBackTimeout);
+        }
+
+        window.clearTimeout()
 
         if(this.propertyEnter) {
             this.#screen.style.setProperty(this.propertyEnter.name, this.propertyEnter.value)
         }
 
         if(this.#saveChildrenClassTillAnim) {
-            setTimeout(() => {
+            this.#enterTimeout = setTimeout(() => {
                 this.#childContainer.classList.add(this.#enterChildClass);
                 this.#childContainer.classList.remove(this.#leaveChildClass);
                 this.#childContainer.classList.remove(this.#leaveBackChildClass);
@@ -190,24 +254,31 @@ export default class Screen
         }
 
         setTimeout(() => {
-            this.#screen.classList.add(this.#enterAnimClass);
             this.#screen.classList.remove(this.#leaveAnimClass);
             this.#screen.classList.remove(this.#leaveBackAnimClass);
+            this.#screen.classList.add(this.#enterAnimClass);
         }, this.animClassesDelay ?? 0);
     }
 
     leave()
     {
         this.#screen.classList.remove(this.#enterClass);
-        this.#screen.classList.add(this.#leaveClass);
         this.#screen.classList.remove(this.#leaveBackClass);
+        this.#screen.classList.add(this.#leaveClass);
 
-        if(this.#saveChildrenClassTillAnim) {
-            setTimeout(() => {
+        if(this.#enterTimeout) {
+            window.clearTimeout(this.#enterTimeout);
+        }
+        if(this.#leaveBackTimeout) {
+            window.clearTimeout(this.#leaveBackTimeout);
+        }
+
+        if(this.#saveChildrenClassTillAnimForward) {
+            this.#leaveTimeout = setTimeout(() => {
                 this.#childContainer.classList.remove(this.#enterChildClass);
-                this.#childContainer.classList.add(this.#leaveChildClass);
                 this.#childContainer.classList.remove(this.#leaveBackChildClass);
-            }, 0);
+                this.#childContainer.classList.add(this.#leaveChildClass);
+            }, this.nextAnimTime ?? this.transitionTime);
         } else if(!this.#saveChildrenClassPermanent) {
             this.#childContainer.classList.remove(this.#enterChildClass);
             this.#childContainer.classList.add(this.#leaveChildClass);
@@ -215,19 +286,30 @@ export default class Screen
         }
 
         this.#screen.classList.remove(this.#enterAnimClass);
-        this.#screen.classList.add(this.#leaveAnimClass);
         this.#screen.classList.remove(this.#leaveBackAnimClass);
+        this.#screen.classList.add(this.#leaveAnimClass);
     }
 
     leaveBack()
     {
+        if(this.#screen.classList.contains('hide-top')) {
+            this.#screen.classList.remove('hide-top');
+        }
+
         this.#screen.style.setProperty('--anim-delay', this.transitionTimeLeaveBack + 'ms');
         this.#screen.classList.remove(this.#enterClass);
         this.#screen.classList.remove(this.#leaveClass);
         this.#screen.classList.add(this.#leaveBackClass);
 
-        if(this.#saveChildrenClassTillAnim) {
-            setTimeout(() => {
+        if(this.#enterTimeout) {
+            window.clearTimeout(this.#enterTimeout);
+        }
+        if(this.#leaveTimeout) {
+            window.clearTimeout(this.#leaveBackTimeout);
+        }
+
+        if(this.#saveChildrenClassTillAnimBack) {
+            this.#leaveTimeout = setTimeout(() => {
                 this.#childContainer.classList.remove(this.#enterChildClass);
                 this.#childContainer.classList.remove(this.#leaveChildClass);
                 this.#childContainer.classList.add(this.#leaveBackChildClass);
@@ -246,14 +328,32 @@ export default class Screen
     clearClasses()
     {
         this.#screen.classList.remove(this.#enterClass);
-        this.#childContainer.classList.remove(this.#enterChildClass);
         this.#screen.classList.remove(this.#leaveClass);
-        this.#childContainer.classList.remove(this.#leaveChildClass);
         this.#screen.classList.remove(this.#leaveBackClass);
-        this.#childContainer.classList.remove(this.#leaveBackChildClass);
+
+        if(!this.#saveChildrenClassPermanent) {
+            this.#childContainer.classList.remove(this.#enterChildClass);
+            this.#childContainer.classList.remove(this.#leaveChildClass);
+            this.#childContainer.classList.remove(this.#leaveBackChildClass);
+        }
+
+        if(this.#enterTimeout) {
+            window.clearTimeout(this.#enterTimeout);
+        }
+        if(this.#leaveTimeout) {
+            window.clearTimeout(this.#leaveTimeout);
+        }
+        if(this.#leaveBackTimeout) {
+            window.clearTimeout(this.#leaveBackTimeout);
+        }
 
         this.#screen.classList.remove(this.#enterAnimClass);
         this.#screen.classList.remove(this.#leaveAnimClass);
         this.#screen.classList.remove(this.#leaveBackAnimClass);
+    }
+
+    hideTop()
+    {
+        this.#screen.classList.add('hide-top');
     }
 }

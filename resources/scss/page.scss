@@ -6,7 +6,7 @@ $block-name: 'b-page';
     &__screens-container {
         position: relative;
         width: 100vw;
-        height: 100vh;
+        height: 100dvh;
         overflow: hidden;
     }
 
@@ -210,6 +210,11 @@ $block-name: 'b-page';
             }
         }
 
+        &.hide-top {
+            display: none;
+            transform: translateY(-100vh);
+        }
+
         @keyframes indexAnimUp {
             from {
                 z-index: -1;
@@ -244,7 +249,7 @@ $block-name: 'b-page';
         top: 0;
         left: 0;
         width: 100vw;
-        height: 100vh;
+        height: 100dvh;
         z-index: 3;
         opacity: 0;
         visibility: hidden;

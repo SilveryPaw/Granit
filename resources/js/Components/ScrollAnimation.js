@@ -22,11 +22,49 @@ export default class ScrollAnimation
 
     init() {
 		// document.addEventListener('keyup', this.keyUpFunction.bind(this));
-		// document.addEventListener('wheel', this.scrollFunction.bind(this));
+		document.addEventListener('wheel', this.scrollFunction.bind(this));
 		if(this.container) {
             this.container.addEventListener('click', this.clickFunction.bind(this));
         }
+        this.swipeEvent();
 		this.updateScreens();
+    }
+
+    swipeEvent() {
+        this.xDown = null;
+        this.yDown = null;
+        this.container.addEventListener('touchstart', this.touchStart.bind(this), false);
+        this.container.addEventListener('touchmove', this.touchMove.bind(this), false);
+    }
+
+    touchStart(e) {
+        const { clientX, clientY } = e.touches[0];
+        this.xDown = clientX;
+        this.yDown = clientY;
+    }
+
+    touchMove(e) {
+        if(!this.xDown || !this.yDown) {
+            return;
+        }
+
+        const { clientX, clientY } = e.touches[0];
+
+        const xDiff = this.xDown - clientX;
+        const yDiff = this.yDown - clientY;
+
+        this.xDown = null;
+        this.yDown = null;
+
+        if(Math.abs(xDiff) > Math.abs(yDiff)) {
+            return;
+        }
+
+        if(yDiff > 0) {
+            this.changeScreen(true);
+        } else {
+            this.changeScreen(false);
+        }
     }
 
     keyUpFunction(event) {
@@ -65,6 +103,10 @@ export default class ScrollAnimation
                 this.prevScreen = id - 1;
                 this.activeScreen = id;
                 this.nextScreen = id + 1;
+                
+                if(this.prevScreen > 0) {
+                    this.#screens[this.prevScreen - 1].hideTop();
+                }
             }
         });
 
@@ -78,15 +120,34 @@ export default class ScrollAnimation
     changeScreen(next = true) {
 		if(this.isAnimating === true) return;
         const curScreen = this.#screens[this.activeScreen];
+        let delay;
+        if(curScreen.firstTimeDelay !== false) {
+            delay = curScreen.firstTimeDelay;
+            curScreen.firstTimeDelay = false;
+        } else {
+            delay = curScreen.delayTime;
+        }
 
-        if(curScreen.stagesActive) {
-            curScreen.nextStage();
+        if(
+            curScreen.stagesActive
+            &&
+            (
+                (next && !curScreen.stagesAtEnd)
+                ||
+                (!next && !curScreen.stagesAtStart)
+            )
+        ) {
+            if(next === true) {
+                curScreen.nextStage();
+            } else {
+                curScreen.prevStage();
+            }
 
             this.isAnimating = true;
 
             setTimeout(() => {
                 this.isAnimating = false;
-            }, curScreen.delayTime);
+            }, delay);
 
             return;
         }
@@ -106,10 +167,19 @@ export default class ScrollAnimation
 	}
 
     updateScreens() {
+        const curScreen = this.#screens[this.activeScreen];
+        let delay;
+        if(curScreen.firstTimeDelay !== false) {
+            delay = curScreen.firstTimeDelay;
+            curScreen.firstTimeDelay = false;
+        } else {
+            delay = curScreen.delayTime;
+        }
+
 		this.isAnimating = true;
 		setTimeout(() => {
 			this.isAnimating = false;
-		}, this.#screens[this.activeScreen].delayTime);
+		}, delay);
 
         if(this.activeScreen > 0) {
             this.header.classList.add('hide-mobile');
@@ -126,6 +196,7 @@ export default class ScrollAnimation
                 screen.leave();
             } else if (index < this.activeScreen - 2) {
                 screen.clearClasses();
+                screen.hideTop();
             }
 		});
 	}

@@ -27,6 +27,10 @@ $block-name: 'b-first-screen';
         padding: 0 var(--padding-horizontal);
         bottom: 9.2rem;
         width: 100%;
+
+        @include breakpoint(1280) {
+            bottom: 14.8rem;
+        }
     }
 
     &__subtitle {
