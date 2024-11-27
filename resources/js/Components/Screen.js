@@ -1,5 +1,6 @@
 export default class Screen
 {
+    #blockName = 'b-page';
     #screen;
     #childContainer;
     #enterClass = 'enter';
@@ -26,11 +27,15 @@ export default class Screen
     #leaveBackTimeout;
     #leaveTimeout;
     #enterTimeout;
-
+    #tempScreen;
+    #screenIndex;
+    #screenHeight;
+    #delayPx = 0;
 
     constructor(screenSelector, options = {})
     {
         this.#screen = document.querySelector(`${screenSelector}`);
+        this.#screenIndex = this.#screen.dataset.index;
         this.transitionTime = options.transitionTime ?? 1000;
         this.transitionTimeLeaveBack = options.transitionTimeLeaveBack ?? this.transitionTime;
         this.delayTime = options.delayTime ?? this.transitionTime;
@@ -43,6 +48,7 @@ export default class Screen
         this.#childContainer.setAttribute('data-content', '');
         this.#screen.style.setProperty('--anim-delay', this.transitionTime + 'ms')
         this.#screen.style.setProperty('--next-anim-delay', this.nextAnimTime + 'ms')
+        this.#screenHeight = options.screenHeight ?? window.innerHeight;
 
         if(options.leaveClass) {
             this.#leaveClass = options.leaveClass;
@@ -111,6 +117,17 @@ export default class Screen
             this.preventSelectors = options.preventSelectors;
             this.setPrevents();
         }
+
+        if(options.delayPx) {
+            this.#delayPx = options.delayPx;
+        }
+
+        this.#tempScreen = document.querySelector(`.${this.#blockName}__temp-screen[data-index="${this.#screenIndex}"]`);
+        this.#tempScreen.style.setProperty('height', this.#screenHeight + 'px');
+    }
+
+    get delayPx() {
+        return this.#delayPx;
     }
 
     get container()
@@ -146,6 +163,22 @@ export default class Screen
     get enabledPrevents()
     {
         return this.#enablePrevents;
+    }
+
+    get tempScreen() {
+        return this.#tempScreen;
+    }
+
+    get scrollHeight() {
+        return this.#tempScreen.getBoundingClientRect().height;
+    }
+
+    get realHeight() {
+        return this.scrollHeight - this.#delayPx;
+    }
+
+    get offsetTop() {
+        return this.#tempScreen.offsetTop;
     }
 
     setPrevents() {
@@ -192,13 +225,18 @@ export default class Screen
             this.#stagesBlocks[this.#currentStage].classList.remove(this.#stages.inactiveClass ?? 'leave');
         }
 
-        if(this.#currentStage <= 0) {
+        if(this.#currentStage < 0) {
             this.#stagesAtStart = true;
         }
     }
 
     nextStage()
     {
+        
+        if(this.#currentStage > this.#stages.count - 1) {
+            this.#stagesAtEnd = true;
+        }
+
         this.#stagesAtStart = false;
         if(this.#currentStage >= 0) {
             this.#stagesBlocks[this.#currentStage].classList.remove(this.#stages.activeClass ?? 'enter');
@@ -208,10 +246,6 @@ export default class Screen
         this.#currentStage += 1;
         this.#stagesBlocks[this.#currentStage].classList.add(this.#stages.activeClass ?? 'enter');
         this.#stagesBlocks[this.#currentStage].classList.remove(this.#stages.inactiveClass ?? 'leave');
-
-        if(this.#currentStage >= this.#stages.count - 1) {
-            this.#stagesAtEnd = true;
-        }
     }
 
     setAnimClasses()
@@ -224,9 +258,13 @@ export default class Screen
     enter()
     {
         this.#screen.style.setProperty('--anim-delay', this.transitionTime + 'ms');
-        this.#screen.classList.remove(this.#leaveClass);
-        this.#screen.classList.remove(this.#leaveBackClass);
         this.#screen.classList.add(this.#enterClass);
+        if(this.#enterClass != this.#leaveClass) {
+            this.#screen.classList.remove(this.#leaveClass);
+        }
+        if(this.#enterClass != this.#leaveBackClass) {
+            this.#screen.classList.remove(this.#leaveBackClass);
+        }
 
         if(this.#leaveTimeout) {
             window.clearTimeout(this.#leaveTimeout);
@@ -262,9 +300,14 @@ export default class Screen
 
     leave()
     {
-        this.#screen.classList.remove(this.#enterClass);
-        this.#screen.classList.remove(this.#leaveBackClass);
         this.#screen.classList.add(this.#leaveClass);
+
+        if(this.#leaveClass != this.#enterClass) {
+            this.#screen.classList.remove(this.#enterClass);
+        }
+        if(this.#leaveClass != this.#leaveBackClass) {
+            this.#screen.classList.remove(this.#leaveBackClass);
+        }
 
         if(this.#enterTimeout) {
             window.clearTimeout(this.#enterTimeout);
@@ -284,10 +327,14 @@ export default class Screen
             this.#childContainer.classList.add(this.#leaveChildClass);
             this.#childContainer.classList.remove(this.#leaveBackChildClass);
         }
-
-        this.#screen.classList.remove(this.#enterAnimClass);
-        this.#screen.classList.remove(this.#leaveBackAnimClass);
+        
         this.#screen.classList.add(this.#leaveAnimClass);
+        if(this.#enterAnimClass !== this.#leaveAnimClass) {
+            this.#screen.classList.remove(this.#enterAnimClass);
+        }
+        if(this.#enterAnimClass !== this.#leaveBackAnimClass) {
+            this.#screen.classList.remove(this.#leaveBackAnimClass);
+        }
     }
 
     leaveBack()
@@ -297,9 +344,14 @@ export default class Screen
         }
 
         this.#screen.style.setProperty('--anim-delay', this.transitionTimeLeaveBack + 'ms');
-        this.#screen.classList.remove(this.#enterClass);
-        this.#screen.classList.remove(this.#leaveClass);
         this.#screen.classList.add(this.#leaveBackClass);
+
+        if(this.#leaveBackClass != this.#enterClass) {
+            this.#screen.classList.remove(this.#enterClass);
+        }
+        if(this.#leaveBackClass != this.#leaveClass) {
+            this.#screen.classList.remove(this.#leaveClass);
+        }
 
         if(this.#enterTimeout) {
             window.clearTimeout(this.#enterTimeout);
@@ -352,8 +404,24 @@ export default class Screen
         this.#screen.classList.remove(this.#leaveBackAnimClass);
     }
 
+    setPercents(perc) {
+        this.#screen.style.setProperty('--perc', perc);
+    }
+
+    clearPercents(perc) {
+        this.#screen.style.removeProperty('--perc');
+    }
+
     hideTop()
     {
-        this.#screen.classList.add('hide-top');
+        // this.#screen.classList.add('hide-top');
+    }
+
+    noAnim()
+    {
+        this.#screen.classList.add('no-anim');
+        setTimeout(() => {
+            this.#screen.classList.remove('no-anim');
+        }, 100);
     }
 }

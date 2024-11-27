@@ -86,7 +86,8 @@ class MainController
                 'mobile' => [
                     'top' => '/imgs/fourth-screen/4-bgm-1.png',
                     'bottom' => '/imgs/fourth-screen/4-bgm-2.png'
-                ]
+                ],
+                'desk' => \Storage::disk('public')->url($this->data['fourth_screen_bg_desk'])
             ]
         ]);
     }
@@ -123,7 +124,7 @@ class MainController
             'imgs' => $imgs,
             'bg' => [
                 'mobile' => '/imgs/seventh-screen/bgm.png',
-                'desk' => ''
+                'desk' => '/imgs/seventh-screen/bg.png'
             ]
         ]);
     }

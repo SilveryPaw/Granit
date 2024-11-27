@@ -20,5 +20,6 @@
             <source srcset="{{ $bg['mobile']['bottom'] }}" media="(max-width:768px)">
             <img src="{{ $bg['mobile']['bottom'] }}"/>
         </picture>
+        <img class="{{ $blockName }}__bg-desk" src="{{ $bg['desk'] }}"/>
     </div>
 </div>

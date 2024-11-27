@@ -104,6 +104,7 @@ class PageDataResource extends ModelResource
                     ]),
                     Tab::make('Шестой экран', [
                         Text::make('Текст', 'sixth_screen_text')
+                            ->unescape()
                             ->hideOnIndex(),
                         Image::make('Задний фон', 'sixth_screen_bg')
                             ->hideOnIndex(),

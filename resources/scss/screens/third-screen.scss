@@ -31,6 +31,10 @@ $block-name: 'b-third-screen';
         text-align: center;
         color: var(--color-gray);
 
+        @include breakpoint(1280) {
+            font-size: 8rem;
+        }
+
         &.actual {
             height: fit-content;
         }
@@ -53,17 +57,22 @@ $block-name: 'b-third-screen';
 
         @for $i from 1 through 5 {
             &:nth-child(#{$i}) {
-                transform: translateY(calc(#{$i} * 2.5rem));
+                --from: calc(#{$i} * 2.5rem);
+                --to: 0rem;
             }
         }
     }
 
     &.enter &__text {
-        transform: translateY(0);
-        color: transparent;
+        transform: translateY(calc((var(--from) - var(--to)) * (1 - var(--delay-percent, 0))));
         transition:
-            transform 0.5s ease,
-            color 0.4s ease 0.3s;
+            transform 0.1s linear,
+            color 0.4s ease;
+    }
+
+    &.leave-back &__text {
+        transition: color 0.4s ease;
+        color: transparent;
 
         &.actual {
             color: var(--color-white);

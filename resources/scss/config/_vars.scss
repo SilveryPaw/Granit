@@ -11,6 +11,10 @@
     --base-transition-function: ease;
     --base-transition-time: 1s;
     --base-transition: var(--base-transition-time) var(--base-transition-function);
+
+    @include breakpoint(1280) {
+        --padding-horizontal: 12rem;
+    }
 }
 
 $polygonCentered: polygon(

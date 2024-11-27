@@ -14,12 +14,17 @@ $block-name: 'b-ninth-screen';
         transform: scale(0.4);
         transform-origin: top;
         transition: transform 4s ease;
+
+        @include breakpoint(1280) {
+            font-size: 4rem;
+        }
     }
 
     &__image {
         transform: scale(0.4);
         margin: 0 auto;
         transition: transform 4s ease;
+        width: 31.4rem;
     }
 
     &.enter {

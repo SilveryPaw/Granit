@@ -18,12 +18,28 @@ $block-name: 'b-fourth-screen';
         font-weight: 700;
         height: 2.4em;
         max-width: 35rem;
+
+        @include breakpoint(1280) {
+            font-size: 5rem;
+            max-width: none;
+            text-align: center;
+            height: 1.6em;
+        }
     }
 
     &__text {
         font-size: 1.6rem;
         font-weight: 700;
         height: 4.2em;
+
+        @include breakpoint(1280) {
+            --lh: 1.4em;
+
+            max-width: 86.1rem;
+            margin: auto;
+            font-size: 2.2rem;
+            text-align: center;
+        }
     }
 
     &__background {
@@ -33,10 +49,15 @@ $block-name: 'b-fourth-screen';
         top: 0;
         left: 0;
         z-index: -1;
+        filter: drop-shadow(0 -100px 6px rgba(0 0 0 / calc(100% * (var(--perc, 0)))));
     }
 
     &__part {
         position: absolute;
+
+        @include breakpoint(1280) {
+            display: none;
+        }
 
         &.top {
             width: 100vw;
@@ -55,6 +76,19 @@ $block-name: 'b-fourth-screen';
             height: auto;
             bottom: 0;
             left: -6.67vw;
+        }
+    }
+
+    &__bg-desk {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: none;
+
+        @include breakpoint(1280) {
+            display: block;
         }
     }
 }

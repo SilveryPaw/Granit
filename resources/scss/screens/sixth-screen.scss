@@ -5,6 +5,10 @@ $block-name: 'b-sixth-screen';
 .#{$block-name} {
     padding-top: 10rem;
 
+    @include breakpoint(1280) {
+        padding-top: 18.7rem;
+    }
+
     &__text-container {
         --lh: 1.2;
 
@@ -13,6 +17,27 @@ $block-name: 'b-sixth-screen';
         text-align: justify;
         opacity: 0;
         transition: opacity 1s ease;
+
+        @include breakpoint(1280) {
+            font-size: 4.4rem;
+            max-width: 35rem;
+            text-align: start;
+        }
+
+        & span.delimiter {
+            @include breakpoint(1280) {
+                display: none;
+            }
+        }
+
+        & span.part {
+            @include breakpoint(1280) {
+                position: absolute;
+                top: 39.6rem;
+                right: var(--padding-horizontal);
+                max-width: 35rem;
+            }
+        }
     }
 
     &.enter &__text-container {

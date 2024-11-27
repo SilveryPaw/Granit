@@ -6,7 +6,10 @@
 
 @section('content')
     {!! $header !!}
-    <div class="{{ $blockName }}__screens-container">
+    <div
+        class="{{ $blockName }}__screens-container"
+        style="--screens-count:{{ count($screens) }}"
+    >
         @foreach($screens as $key => $screen)
             <div
                 class="{{ $blockName }}__screen {{ $blockName }}__screen--{{ $key }} {{ $loop->first ? 'enter' : '' }}"
@@ -16,8 +19,17 @@
             </div>
         @endforeach
     </div>
+    <div class="{{ $blockName }}__temp-screens">
+        @foreach($screens as $key => $screen)
+            <div
+                class="{{ $blockName }}__temp-screen"
+                data-index="{{ $key }}"    
+            >
+            </div>
+        @endforeach
+    </div>
     <div class="{{ $blockName }}__buy-frame">
-        <iframe
+        {{-- <iframe
             frameborder="0"
             width="100%"
             height="50%"
@@ -29,7 +41,7 @@
             class="tc-widget-frame_popup"
             allowpaymentrequest=""
             allow="payment *"
-        ></iframe>
+        ></iframe> --}}
     </div>
 
     {!! $buyButton !!}

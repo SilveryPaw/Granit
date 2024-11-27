@@ -3,6 +3,8 @@ import Screen from "../Components/Screen";
 
 const headerClass = 'b-header'
 
+window.history.scrollRestoration = 'manual';
+
 document.addEventListener('DOMContentLoaded', function() {
     const selectorPart = '.b-page__screen--';
     const anim = new ScrollAnimation(
@@ -18,7 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         selector: '.b-second-screen__value-container',
                         activeClass: 'enter',
                         inactiveClass: 'leave'
-                    }
+                    },
+                    screenHeight: 2000,
+                    delayPx: 1000
                 }
             ),
             new Screen(
@@ -27,9 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     enterAnimClass: 'in-fade-under',
                     leaveAnimClass: 'out-scale-under',
                     leaveBackAnimClass: 'out-scale-under',
-                    saveChildrenClassTillAnimBack: true,
-                    saveChildrenClassTillAnimForward: true,
-                    saveChildrenClassTillAnim: true
+                    screenHeight: 2000,
+                    delayPx: 1000
                 }
             ),
             new Screen(

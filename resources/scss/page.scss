@@ -4,31 +4,32 @@ $block-name: 'b-page';
 
 .#{$block-name} {
     &__screens-container {
-        position: relative;
+        position: absolute;
         width: 100vw;
         height: 100dvh;
+        top: 0;
+        left: 0;
         overflow: hidden;
     }
 
     &__screen {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         opacity: 0;
         visibility: hidden;
         transform: translateY(100%);
-        transition: transform var(--anim-delay, 1s) ease-in-out;
+        transition: transform 0.1s linear;
 
-        
         &.leave-back {
-            transform: translateY(-100%);
+            transform: translateY(calc(-100% * var(--perc, 1)));
             opacity: 1;
             visibility: visible;
             z-index: 0;
         }
 
         &.enter {
-            transform: translateY(0);
+            transform: translateY(calc((var(--from) - var(--to)) * (1 - var(--perc, 1))));
             opacity: 1;
             visibility: visible;
             z-index: 1;
@@ -84,17 +85,15 @@ $block-name: 'b-page';
         }
 
         &.in-slide {
-            transition: transform var(--anim-delay, 1s) ease-in-out;
+            --from: 100%;
+            --to: 0%;
+
+            transition: transform 0.1s linear;
         }
 
         &.in-fade-under {
             transition: none;
-            animation: indexAnimUp var(--anim-delay, 1s);
-            animation-play-state: paused;
-
-            &.enter {
-                animation-play-state: running;
-            }
+            z-index: -1;
         }
 
         &.in-polygon-bottom {
@@ -113,12 +112,14 @@ $block-name: 'b-page';
         &.out-scale-under {
             transform-origin: top;
             transition:
-                transform 0s linear var(--anim-delay, 1s),
-                scale var(--anim-delay, 1s);
+                transform 0.1s linear,
+                scale 0.1s linear;
 
             &.leave,
             &.leave-back {
-                scale: 0.9;
+                transform: calc(-10% * var(--perc, 0));
+                scale: calc(1 - 0.1 * var(--perc, 0));
+                z-index: -1;
             }
         }
 
@@ -198,15 +199,16 @@ $block-name: 'b-page';
                 left: 0;
                 background: rgba(0 0 0 / 50%);
                 visibility: visible;
-                transition:
-                    opacity var(--anim-delay, 1s) ease-in-out,
-                    visibility 0s linear var(--anim-delay, 1s);
+                transition: opacity 0.1s linear;
                 content: "";
             }
 
-            &.enter::after {
+            &.leave-back::after {
                 opacity: 0;
-                visibility: hidden;
+            }
+
+            &.enter::after {
+                opacity: calc(1 - 1 * var(--perc, 0));
             }
         }
 
@@ -242,6 +244,18 @@ $block-name: 'b-page';
                 z-index: -1;
             }
         }
+    }
+
+    &__temp-screens {
+        position: relative;
+        z-index: -1;
+    }
+
+    &__temp-screen {
+        visibility: hidden;
+        width: 0;
+        height: var(--screen-h, 100dvh);
+        z-index: -1;
     }
 
     &__buy-frame {

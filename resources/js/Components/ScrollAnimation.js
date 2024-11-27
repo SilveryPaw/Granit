@@ -5,8 +5,9 @@ export default class ScrollAnimation
     constructor(screens, options = {})
     {
         this.#screens = screens;
-        this.activeScreen = 0;
-        this.nextScreen = 1;
+        this.prevScreen = 0;
+        this.activeScreen = 1;
+        this.nextScreen = 2;
 		this.lastScreenIndex = screens.length - 1;
 		this.isAnimating = false;
 		this.prevClass = options.prevClass ?? 'prev';
@@ -21,13 +22,63 @@ export default class ScrollAnimation
     }
 
     init() {
-		// document.addEventListener('keyup', this.keyUpFunction.bind(this));
-		document.addEventListener('wheel', this.scrollFunction.bind(this));
-		if(this.container) {
-            this.container.addEventListener('click', this.clickFunction.bind(this));
-        }
-        this.swipeEvent();
+		// document.addEventListener('wheel', this.scrollFunction.bind(this));
+		// if(this.container) {
+        //     this.container.addEventListener('click', this.clickFunction.bind(this));
+        // }
+        window.addEventListener('scroll', this.scrollEvent.bind(this));
+        this.scrollEvent();
+        // this.swipeEvent();
 		this.updateScreens();
+    }
+
+    scrollEvent(e) {
+        const curScreen = this.#screens[this.activeScreen];
+        const prevScreen = this.#screens[this.prevScreen];
+        let scroll = document.documentElement.scrollTop;
+        let curScroll = scroll - prevScreen.delayPx - prevScreen.offsetTop; 
+
+        if(scroll > prevScreen.offsetTop + prevScreen.scrollHeight) {
+            prevScreen.setPercents(1);
+            console.log(scroll)
+            console.log(prevScreen.offsetTop);
+            console.log(prevScreen.delayPx)
+            console.log(prevScreen.offsetTop + prevScreen.scrollHeight);
+            console.log(curScroll);
+            console.log(curScroll / prevScreen.realHeight);
+            console.log(curScreen.offsetTop + curScreen.delayPx);
+            console.log('____________')
+            console.log('setting to zero')
+
+            if(scroll == curScreen.offsetTop + curScreen.delayPx) {
+                curScreen.noAnim();
+                curScreen.setPercents(0)
+            } else {
+                curScreen.setPercents(1);
+            }
+            this.changeScreen(true);
+        } else if(scroll < prevScreen.offsetTop + prevScreen.delayPx) {
+            curScreen.setPercents(0);
+            if(curScroll >= 0) {
+                prevScreen.setPercents(0);
+            } else {
+                prevScreen.setPercents(1);
+            }
+            this.changeScreen(false);
+        } else {
+            let percents = curScroll / prevScreen.realHeight;
+            if(percents < 0) {
+                percents = 1;
+            }
+            prevScreen.setPercents(percents);
+            curScreen.setPercents(percents);
+        }
+    }
+
+    getCurrentScreen() {
+        let scroll = document.documentElement.scrollTop;
+        let curScreen = scroll / this.#screens.length;
+        let curScroll = scroll % this.#screens.length;
     }
 
     swipeEvent() {
@@ -120,34 +171,37 @@ export default class ScrollAnimation
     changeScreen(next = true) {
 		if(this.isAnimating === true) return;
         const curScreen = this.#screens[this.activeScreen];
-        let delay;
-        if(curScreen.firstTimeDelay !== false) {
-            delay = curScreen.firstTimeDelay;
-            curScreen.firstTimeDelay = false;
-        } else {
-            delay = curScreen.delayTime;
-        }
+        // let delay;
+        // if(curScreen.firstTimeDelay !== false) {
+        //     delay = curScreen.firstTimeDelay;
+        //     curScreen.firstTimeDelay = false;
+        // } else {
+        //     delay = curScreen.delayTime;
+        // }
 
         if(
-            curScreen.stagesActive
+            curScreen.delayPx > 0
             &&
-            (
-                (next && !curScreen.stagesAtEnd)
-                ||
-                (!next && !curScreen.stagesAtStart)
-            )
+            this.inDelay()
         ) {
-            if(next === true) {
-                curScreen.nextStage();
-            } else {
-                curScreen.prevStage();
-            }
+            console.log('here')
+            let scroll = document.documentElement.scrollTop;
+            let curScroll = scroll - curScreen.offsetTop;
+            let delayPerc = curScroll / curScreen.delayPx;
 
-            this.isAnimating = true;
+            curScreen.container.style.setProperty('--delay-percent', delayPerc)
+            // if(next === true) {
+                
+            //     curScreen.nextStage();
+            // } else {
+            //     curScreen.prevStage();
+            // }
 
-            setTimeout(() => {
-                this.isAnimating = false;
-            }, delay);
+            // this.isAnimating = true;
+
+            // setTimeout(() => {
+            //     this.isAnimating = false;
+            // }, delay);
 
             return;
         }
@@ -166,20 +220,28 @@ export default class ScrollAnimation
 		this.updateScreens();
 	}
 
+    inDelay() {
+        let scroll = document.documentElement.scrollTop;
+        let curScreen = this.#screens[this.activeScreen];
+        let curScroll = scroll - curScreen.offsetTop; 
+
+        return (curScroll > 0) && (curScroll < curScreen.delayPx);
+    }
+
     updateScreens() {
         const curScreen = this.#screens[this.activeScreen];
-        let delay;
-        if(curScreen.firstTimeDelay !== false) {
-            delay = curScreen.firstTimeDelay;
-            curScreen.firstTimeDelay = false;
-        } else {
-            delay = curScreen.delayTime;
-        }
+        // let delay;
+        // if(curScreen.firstTimeDelay !== false) {
+        //     delay = curScreen.firstTimeDelay;
+        //     curScreen.firstTimeDelay = false;
+        // } else {
+        //     delay = curScreen.delayTime;
+        // }
 
-		this.isAnimating = true;
-		setTimeout(() => {
-			this.isAnimating = false;
-		}, delay);
+		// this.isAnimating = true;
+		// setTimeout(() => {
+		// 	this.isAnimating = false;
+		// }, delay);
 
         if(this.activeScreen > 0) {
             this.header.classList.add('hide-mobile');
@@ -195,8 +257,8 @@ export default class ScrollAnimation
             } else if(index === this.nextScreen) {
                 screen.leave();
             } else if (index < this.activeScreen - 2) {
-                screen.clearClasses();
-                screen.hideTop();
+                // screen.clearClasses();
+                // screen.hideTop();
             }
 		});
 	}
