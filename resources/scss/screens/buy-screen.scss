@@ -50,7 +50,7 @@ $block-name: 'b-buy-screen';
 
             & .#{$block-name}__cost {
                 background: linear-gradient(101.61deg, #CD9614 7.53%, #F8DFA5 53.54%, #DAA835 98.63%);
-                -webkit-background-clip: text;
+                background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
 
@@ -161,5 +161,11 @@ $block-name: 'b-buy-screen';
             right: -2.4rem;
             clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
         }
+    }
+
+    &.in-delay &__container,
+    &.leave-back &__container,
+    &.enter &__container {
+        margin-top: calc(-20rem * var(--delay-percent));
     }
 }

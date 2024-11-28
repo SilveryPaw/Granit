@@ -110,14 +110,14 @@ $block-name: 'b-page';
             --scale: calc(5 * var(--perc, 1));
             --offset: 50%;
 
-            transition: clip-path 0.1s;
+            transition: clip-path 0.1s linear;
             z-index: 2;
         }
 
         &.in-polygon-center {
             --scale: calc(5 * var(--perc, 1));
 
-            transition: clip-path 0.1s;
+            transition: clip-path 0.1s linear;
 
             &.in-delay {
                 --scale: calc(5 * (1 - var(--delay-percent)));
@@ -247,10 +247,48 @@ $block-name: 'b-page';
                 transform: translateY(0);
                 opacity: 1 !important;
             }
+
+            &.leave-back {
+                transition: none;
+                z-index: 2 !important;
+            }
+        }
+
+        &--eleventh,
+        &--twelfth,
+        &--thirteenth,
+        &--fourteenth {
+            &.enter,
+            &.in-slide,
+            &.leave,
+            &.leave-back {
+                transition: none;
+            }
+
+            &.leave-back {
+                z-index: 2;
+            }
+        }
+
+        &--fifteenth {
+            transition: none;
+
+            &.leave-back {
+                z-index: 3;
+            }
         }
 
         &--sixteenth {
             background-color: var(--color-black);
+            transition: none;
+            z-index: 2 !important;
+
+            &.in-slide,
+            &.leave-back {
+                --to: 1%;
+                transition: none;
+                z-index: 2;
+            }
 
             &::before {
                 position: absolute;
@@ -260,6 +298,10 @@ $block-name: 'b-page';
                 left: -0.1rem;
                 content: "";
             }
+        }
+
+        &--final.in-slide {
+            transition: none;
         }
 
         &.hide-top {

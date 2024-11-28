@@ -14,6 +14,7 @@ export default class ScrollAnimation
         this.currentClass = options.currentClass ?? 'current';
 		this.nextClass = options.nextClass ?? 'next';
         this.header = document.querySelector('.b-header');
+        this.button = document.querySelector('.b-buy-button');
         if(options.container) {
             this.container = document.querySelector(`.${options.container}`);
         }
@@ -22,13 +23,8 @@ export default class ScrollAnimation
     }
 
     init() {
-		// document.addEventListener('wheel', this.scrollFunction.bind(this));
-		// if(this.container) {
-        //     this.container.addEventListener('click', this.clickFunction.bind(this));
-        // }
         window.addEventListener('scroll', this.scrollEvent.bind(this));
         this.scrollEvent();
-        // this.swipeEvent();
 		this.updateScreens();
     }
 
@@ -38,20 +34,9 @@ export default class ScrollAnimation
         let scroll = document.documentElement.scrollTop;
         let curScroll = scroll - prevScreen.delayPx - prevScreen.offsetTop;
 
-        console.log(scroll);
-        console.log(curScroll);
-        console.log(curScreen.container)
-        console.log(prevScreen.offsetTop + prevScreen.scrollHeight)
-        console.log('______________');
-
         if(scroll > prevScreen.offsetTop + prevScreen.scrollHeight) {
             prevScreen.setPercents(1);
-            // if(scroll == curScreen.offsetTop + curScreen.delayPx) {
-                curScreen.setDefaultEnterPercents()
-            // } else {
-            //     curScreen.setPercents(1);
-            // }
-            console.log('here')
+            curScreen.setDefaultEnterPercents()
             this.changeScreen(true);
         } else if(scroll < prevScreen.offsetTop + prevScreen.delayPx) {
             curScreen.setPercents(0);
@@ -67,20 +52,10 @@ export default class ScrollAnimation
                     prevSlide.container.style.removeProperty('--scale');
                 }, 100);
             }
-            // if(curScroll >= 0) {
-            //     prevScreen.setPercents(0);
-            // } else {
-            //     prevScreen.setPercents(1);
-            // }
             this.changeScreen(false);
         } else {
             let percents = curScroll / prevScreen.realHeight;
-            // console.log(percents);
-            // console.log(scroll);
-            // console.log(prevScreen.realHeight);
-            // console.log(prevScreen.offsetTop);
-            // console.log(prevScreen.scrollHeight);
-            // console.log('----------------')
+
             if(percents < 0) {
                 percents = 1;
             }
@@ -88,6 +63,15 @@ export default class ScrollAnimation
                 curScreen.container.classList.remove('in-delay');
                 curScreen.child.classList.remove('in-delay')
                 this.#screens[this.nextScreen].container.classList.remove('visible');
+            }
+            if(curScreen.hideButton) {
+                this.button.classList.add('with-perc');
+                this.button.style.setProperty('--perc', 1 - percents * 3);
+            } else if(curScreen.showButton) {
+                this.button.classList.add('with-perc');
+                this.button.style.setProperty('--perc', percents * 2);
+            } else {
+                this.button.classList.remove('with-perc');
             }
             prevScreen.setPercents(percents);
             curScreen.setPercents(percents);
@@ -187,13 +171,6 @@ export default class ScrollAnimation
 
     changeScreen(next = true) {
         const curScreen = this.#screens[this.activeScreen];
-        // let delay;
-        // if(curScreen.firstTimeDelay !== false) {
-        //     delay = curScreen.firstTimeDelay;
-        //     curScreen.firstTimeDelay = false;
-        // } else {
-        //     delay = curScreen.delayTime;
-        // }
 
         if(
             curScreen.delayPx > 0
@@ -208,19 +185,6 @@ export default class ScrollAnimation
             curScreen.container.classList.add('in-delay');
             curScreen.child.classList.add('in-delay');
             this.#screens[this.nextScreen].container.classList.add('visible');
-            
-            // if(next === true) {
-                
-            //     curScreen.nextStage();
-            // } else {
-            //     curScreen.prevStage();
-            // }
-
-            // this.isAnimating = true;
-
-            // setTimeout(() => {
-            //     this.isAnimating = false;
-            // }, delay);
 
             return;
         } else {
@@ -255,18 +219,6 @@ export default class ScrollAnimation
 
     updateScreens() {
         const curScreen = this.#screens[this.activeScreen];
-        // let delay;
-        // if(curScreen.firstTimeDelay !== false) {
-        //     delay = curScreen.firstTimeDelay;
-        //     curScreen.firstTimeDelay = false;
-        // } else {
-        //     delay = curScreen.delayTime;
-        // }
-
-		// this.isAnimating = true;
-		// setTimeout(() => {
-		// 	this.isAnimating = false;
-		// }, delay);
 
 		this.#screens.forEach((screen, index) => {
 			if(index === this.prevScreen) {
@@ -276,7 +228,6 @@ export default class ScrollAnimation
             } else if(index === this.nextScreen) {
                 screen.leave();
             } else if (index < this.activeScreen - 2) {
-                // screen.clearClasses();
                 screen.noAnim();
                 screen.hideTop();
             } else {

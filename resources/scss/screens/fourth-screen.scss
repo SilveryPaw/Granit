@@ -52,10 +52,6 @@ $block-name: 'b-fourth-screen';
         background-color: rgba(0 0 0 / calc(100% * (var(--perc, 0))));
     }
 
-    &.leave-back &__part.top {
-        transform: translateX(calc(var(--perc, 0) * 3rem));
-    }
-
     &__part {
         position: absolute;
 

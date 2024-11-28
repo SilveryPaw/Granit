@@ -33,6 +33,8 @@ export default class Screen
     #delayPx = 0;
     #defaultEnterPercents = 0;
     #defaultLeaveBackPercents = 0;
+    #hideBuyButton = false;
+    #showBuyButton = false;
 
     constructor(screenSelector, options = {})
     {
@@ -126,6 +128,15 @@ export default class Screen
             this.#delayPx = options.delayPx;
         }
 
+        if(options.hideButton) {
+            this.#hideBuyButton = options.hideButton;
+        }
+
+        if(options.showButton) {
+            this.#showBuyButton = options.showButton;
+        }
+
+
         this.#tempScreen = document.querySelector(`.${this.#blockName}__temp-screen[data-index="${this.#screenIndex}"]`);
         this.#tempScreen.style.setProperty('height', this.#screenHeight + 'px');
     }
@@ -187,6 +198,14 @@ export default class Screen
 
     get offsetTop() {
         return this.#tempScreen.offsetTop;
+    }
+
+    get hideButton() {
+        return this.#hideBuyButton;
+    }
+
+    get showButton() {
+        return this.#showBuyButton;
     }
 
     setPrevents() {

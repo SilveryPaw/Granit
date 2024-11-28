@@ -34,11 +34,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     leaveBackAnimClass: 'out-scale-under',
                     screenHeight: 2000,
                     defaultEnterPercents: 1,
-                    delayPx: 1000
+                    delayPx: 500
                 }
             ),
             new Screen(
                 `${selectorPart}fourth`,
+                {
+                    delayPx: 300,
+                    defaultEnterPercents: 1,
+                }
             ),
             new Screen(
                 `${selectorPart}fifth`,
@@ -67,7 +71,11 @@ document.addEventListener('DOMContentLoaded', function() {
             new Screen(
                 `${selectorPart}buy`,
                 {
-                    leaveBackAnimClass: 'out-no-leave'
+                    leaveBackAnimClass: 'out-content-anim-only',
+                    hideButton: true,
+                    defaultEnterPercents: 1,
+                    defaultLeaveBackPercents: 1,
+                    delayPx: 300
                 }
             ),
             new Screen(
@@ -77,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     enterAnimClass: 'in-polygon-bottom',
                     leaveBackAnimClass: 'out-fade',
                     leaveAnimClass: 'no-anim',
+                    showButton: true,
                     defaultEnterPercents: 1,
                     screenHeight: 100,
                 }
@@ -147,7 +156,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 `${selectorPart}fourteenth`,
                 {
                     preventSelectors: '.b-eleventh-screen__controls-container',
-                    // leaveBackAnimClass: 'out-hide',
                     leaveBackAnimClass: 'out-no-leave'
                 }
             ),
@@ -172,6 +180,9 @@ document.addEventListener('DOMContentLoaded', function() {
             ),
             new Screen(
                 `${selectorPart}final`,
+                {
+                    delayPx: 300
+                }
             ),
         ],
         {

@@ -38,4 +38,9 @@ $block-name: 'b-buy-button';
         right: -2.4rem;
         clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
     }
+
+    &.with-perc {
+        pointer-events: none;
+        opacity: var(--perc, 1);
+    }
 }
