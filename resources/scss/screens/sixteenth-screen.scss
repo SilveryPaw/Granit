@@ -38,6 +38,7 @@ $block-name: 'b-sixteenth-screen';
         margin-right: 5rem;
         width: 20rem;
         height: 15rem;
+        flex-shrink: 0;
 
         svg {
             width: 100%;
