@@ -20,6 +20,10 @@ $block-name: 'b-buy-button';
     line-height: 1.27;
     z-index: 3;
 
+    @include breakpoint(1280) {
+        bottom: 5rem;
+    }
+
     &::after,
     &::before {
         position: absolute;

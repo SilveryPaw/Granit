@@ -5,6 +5,10 @@ $block-name: 'b-seventh-screen';
 .#{$block-name} {
     padding-top: 10rem;
 
+    @include breakpoint(1280) {
+        padding-top: 15rem;
+    }
+
     &__content-container {
         position: relative;
         height: 53.2rem;
@@ -79,8 +83,12 @@ $block-name: 'b-seventh-screen';
         opacity: calc(1 * 0.3 * var(--delay-percent, 0));
 
         @include breakpoint(1280) {
+            width: calc(100% - 2 * 12rem);
             font-size: 2rem;
             text-align: center;
+            color: var(--color-white);
+            bottom: 13.8rem;
+            min-height: unset;
         }
     }
 
