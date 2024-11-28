@@ -34,7 +34,15 @@ $block-name: 'b-sixteenth-screen';
     }
 
     &__partner {
+        position: relative;
         margin-right: 5rem;
+        width: 20rem;
+        height: 15rem;
+
+        svg {
+            width: 100%;
+            height: auto;
+        }
     }
 
     &::before {
