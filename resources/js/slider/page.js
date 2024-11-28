@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     leaveChildClass: 'leave',
                     leaveBackChildClass: 'leave',
                     defaultEnterPercents: 0,
-                    screenHeight: 1000,
-                    delayPx: 500,
+                    screenHeight: 1500,
+                    delayPx: 1300,
                     screenHeightDesk: 1500,
                     delayPxDesk: 1000,
                     animClassesDelay: 100

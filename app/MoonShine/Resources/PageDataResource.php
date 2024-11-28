@@ -86,8 +86,8 @@ class PageDataResource extends ModelResource
                             ->hideOnIndex(),
                         Text::make('Текст', 'fourth_screen_text')
                             ->hideOnIndex(),
-                        Image::make('Задний фон', 'fourth_screen_bg')
-                            ->hideOnIndex(),
+                        // Image::make('Задний фон', 'fourth_screen_bg')
+                        //     ->hideOnIndex(),
                         Image::make('Задний фон (для десктопа)', 'fourth_screen_bg_desk')
                             ->hideOnIndex()
                     ]),
@@ -270,10 +270,10 @@ class PageDataResource extends ModelResource
                             ->hideOnIndex(),
                         Text::make('Ссылка телеграм для заголовка', 'eighteenth_screen_tg_link')
                             ->hideOnIndex(),
-                        Image::make('Задний фон', 'eighteenth_screen_bg')
-                            ->hideOnIndex(),
-                        Image::make('Задний фон (для десктопа)', 'eighteenth_screen_bg_desk')
-                            ->hideOnIndex()
+                        // Image::make('Задний фон', 'eighteenth_screen_bg')
+                        //     ->hideOnIndex(),
+                        // Image::make('Задний фон (для десктопа)', 'eighteenth_screen_bg_desk')
+                        //     ->hideOnIndex()
                     ]),
                 ])->vertical()
             ]),
