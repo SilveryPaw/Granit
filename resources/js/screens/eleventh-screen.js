@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        const count = block.querySelectorAll(`.${blockName}__music-slide`);
-        const startIndex = Math.ceil(count / 2);
+        const count = block.querySelectorAll(`.${blockName}__music-slide`).length;
+        const startIndex = Math.floor(count / 2);
 
         const optionsDesk = {
             wrapperClass: `${blockName}__music-wrapper`,

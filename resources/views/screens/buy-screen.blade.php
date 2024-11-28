@@ -1,7 +1,10 @@
 @php
     $blockName = 'b-buy-screen';
 @endphp
-<div class="{{ $blockName }} c-container-content c-screen">
+<div class="{{ $blockName }} c-screen">
+    <div class="{{ $blockName }}__title c-font-overpass">
+        Успей купить билет
+    </div>
     <div class="{{ $blockName}}__container">
         <div class="{{ $blockName }}__ticket-container">
             <p class="{{ $blockName }}__label">

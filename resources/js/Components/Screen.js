@@ -30,11 +30,15 @@ export default class Screen
     #tempScreen;
     #screenIndex;
     #screenHeight;
+    #screenHeightDesk;
     #delayPx = 0;
+    #delayPxDesk = 0;
     #defaultEnterPercents = 0;
     #defaultLeaveBackPercents = 0;
+    #defaultLeavePercents = 0;
     #hideBuyButton = false;
     #showBuyButton = false;
+    #minDeskWitdh = 1280;
 
     constructor(screenSelector, options = {})
     {
@@ -53,8 +57,10 @@ export default class Screen
         this.#screen.style.setProperty('--anim-delay', this.transitionTime + 'ms')
         this.#screen.style.setProperty('--next-anim-delay', this.nextAnimTime + 'ms')
         this.#screenHeight = options.screenHeight ?? window.innerHeight;
+        this.#screenHeightDesk = options.screenHeightDesk ?? null;
         this.#defaultEnterPercents = options.defaultEnterPercents ?? this.#defaultEnterPercents;
         this.#defaultLeaveBackPercents = options.defaultLeaveBackPercents ?? this.#defaultLeaveBackPercents;
+        this.#defaultLeavePercents = options.defaultLeavePercents ?? this.#defaultLeavePercents;
 
         if(options.leaveClass) {
             this.#leaveClass = options.leaveClass;
@@ -128,6 +134,10 @@ export default class Screen
             this.#delayPx = options.delayPx;
         }
 
+        if(options.delayPxDesk) {
+            this.#delayPxDesk = options.delayPxDesk;
+        }
+
         if(options.hideButton) {
             this.#hideBuyButton = options.hideButton;
         }
@@ -138,7 +148,12 @@ export default class Screen
 
 
         this.#tempScreen = document.querySelector(`.${this.#blockName}__temp-screen[data-index="${this.#screenIndex}"]`);
-        this.#tempScreen.style.setProperty('height', this.#screenHeight + 'px');
+
+        if(window.innerWidth > this.#minDeskWitdh && this.#screenHeightDesk !== null) {
+            this.#tempScreen.style.setProperty('height', this.#screenHeightDesk + 'px');
+        } else {
+            this.#tempScreen.style.setProperty('height', this.#screenHeight + 'px');
+        }
     }
 
     get key() {
@@ -146,6 +161,9 @@ export default class Screen
     }
 
     get delayPx() {
+        if(window.innerWidth > this.#minDeskWitdh && this.#delayPxDesk != 0) {
+            return this.#delayPxDesk;
+        }
         return this.#delayPx;
     }
 
@@ -193,6 +211,9 @@ export default class Screen
     }
 
     get realHeight() {
+        if(window.innerWidth >= this.#minDeskWitdh && this.#delayPxDesk != 0) {
+            return this.scrollHeight - this.#delayPxDesk;
+        }
         return this.scrollHeight - this.#delayPx;
     }
 
@@ -293,6 +314,8 @@ export default class Screen
             this.#screen.classList.remove(this.#leaveBackClass);
         }
 
+        this.show();
+
         if(this.#leaveTimeout) {
             window.clearTimeout(this.#leaveTimeout);
         }
@@ -367,10 +390,6 @@ export default class Screen
 
     leaveBack()
     {
-        if(this.#screen.classList.contains('hide-top')) {
-            this.#screen.classList.remove('hide-top');
-        }
-
         this.#screen.style.setProperty('--anim-delay', this.transitionTimeLeaveBack + 'ms');
         this.#screen.classList.add(this.#leaveBackClass);
 
@@ -380,6 +399,9 @@ export default class Screen
         if(this.#leaveBackClass != this.#leaveClass) {
             this.#screen.classList.remove(this.#leaveClass);
         }
+
+        this.show()
+        this.removeHideTop();
 
         if(this.#enterTimeout) {
             window.clearTimeout(this.#enterTimeout);
@@ -448,6 +470,10 @@ export default class Screen
         this.#screen.style.setProperty('--perc', this.#defaultLeaveBackPercents);
     }
 
+    setDefaultLeavePercents() {
+        this.#screen.style.setProperty('--perc', this.#defaultLeavePercents);
+    }
+
     clearPercents(perc) {
         this.#screen.style.removeProperty('--perc');
     }
@@ -460,6 +486,14 @@ export default class Screen
     removeHideTop()
     {
         this.#screen.classList.remove('hide-top');
+    }
+
+    hide() {
+        this.#screen.classList.add('hide');
+    }
+
+    show() {
+        this.#screen.classList.remove('hide');
     }
 
     noAnim()

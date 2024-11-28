@@ -29,7 +29,7 @@ $block-name: 'b-page';
         }
 
         &.enter {
-            transform: translateY(calc((var(--from) - var(--to)) * (1 - var(--perc, 1))));
+            transform: translateY(calc(100% * (1 - var(--perc))));
             opacity: 1;
             visibility: visible;
             z-index: 1;
@@ -59,7 +59,7 @@ $block-name: 'b-page';
         }
 
         &.leave-polygon-center {
-            --scale: 5;
+            --scale: 10;
 
             transform: translateY(0);
             transition: clip-path var(--anim-delay, 1s);
@@ -99,15 +99,21 @@ $block-name: 'b-page';
 
         &.in-fade-under {
             transition: none;
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
             z-index: -1;
         }
 
         &.in-fade {
-            transition: none;
+            visibility: visible;
+            transition: opacity 0.1s linear;
+            transform: translateY(0);
+            opacity: var(--perc);
         }
 
         &.in-polygon-bottom {
-            --scale: calc(5 * var(--perc, 1));
+            --scale: calc(10 * var(--perc, 1));
             --offset: 50%;
 
             transition: clip-path 0.1s linear;
@@ -115,12 +121,12 @@ $block-name: 'b-page';
         }
 
         &.in-polygon-center {
-            --scale: calc(5 * var(--perc, 1));
+            --scale: calc(10 * var(--perc, 1));
 
             transition: clip-path 0.1s linear;
 
             &.in-delay {
-                --scale: calc(5 * (1 - var(--delay-percent)));
+                --scale: calc(10 * (1 - var(--delay-percent)));
             }
         }
 
@@ -144,6 +150,10 @@ $block-name: 'b-page';
             &.leave,
             &.leave-back {
                 transform: translateY(calc(-56% * var(--perc, 0)));
+
+                @include breakpoint(1280) {
+                    transform: translateY(calc(-160% * var(--perc, 0)));
+                }
             }
         }
 
@@ -167,9 +177,9 @@ $block-name: 'b-page';
 
             &.leave,
             &.leave-back {
-                transition: opacity 0.4s linear;
+                transition: opacity 0.1s linear;
                 transform: translateY(0);
-                opacity: 0;
+                opacity: calc(1 - var(--perc));
             }
         }
 
@@ -196,7 +206,7 @@ $block-name: 'b-page';
         }
 
         &.out-polygon-center {
-            --scale: calc(5 * var(--perc, 0));
+            --scale: calc(10 * var(--perc, 0));
 
             transition: clip-path 0.1s;
         }
@@ -226,7 +236,8 @@ $block-name: 'b-page';
                 content: "";
             }
 
-            &.leave-back::after {
+            &.leave-back::after,
+            &.enter.in-delay::after {
                 opacity: 0;
             }
 
@@ -246,6 +257,7 @@ $block-name: 'b-page';
             &.visible {
                 transform: translateY(0);
                 opacity: 1 !important;
+                transition: none !important;
             }
 
             &.leave-back {
@@ -307,6 +319,10 @@ $block-name: 'b-page';
         &.hide-top {
             display: none;
             transform: translateY(-100vh);
+        }
+
+        &.hide {
+            display: none;
         }
     }
 

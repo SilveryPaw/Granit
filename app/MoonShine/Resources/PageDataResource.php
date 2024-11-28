@@ -66,7 +66,8 @@ class PageDataResource extends ModelResource
                                 Text::make('Значение', 'value')
                                     ->unescape(),
                                 Text::make('Описание', 'description')
-                                    ->unescape()
+                                    ->unescape(),
+                                Text::make('Дополнительный текст. Выводится на десктопе', 'add-text')
                             ])
                             ->hideOnIndex(),
                         Image::make('Задний фон', 'second_screen_bg')

@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         inactiveClass: 'leave'
                     },
                     screenHeight: 2000,
-                    defaultEnterPercents: 1,
+                    defaultEnterPercents: 0,
+                    defaultLeaveBackPercents: 0,
                     delayPx: 1000
                 }
             ),
@@ -33,15 +34,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     leaveAnimClass: 'out-scale-under',
                     leaveBackAnimClass: 'out-scale-under',
                     screenHeight: 2000,
-                    defaultEnterPercents: 1,
+                    defaultEnterPercents: 0,
+                    defaultLeaveBackPercents: 0,
                     delayPx: 500
                 }
             ),
             new Screen(
                 `${selectorPart}fourth`,
                 {
-                    delayPx: 300,
-                    defaultEnterPercents: 1,
+                    screenHeight: 2000,
+                    screenHeightDesk: 1500,
+                    delayPx: 700,
+                    defaultEnterPercents: 0,
                 }
             ),
             new Screen(
@@ -49,10 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     firstTimeDelay: 4400,
                     screenHeight: 1500,
+                    screenHeightDesk: 2000,
                     delayPx: 1000,
                     leaveBackAnimClass: 'out-half-leave',
-                    defaultEnterPercents: 1,
-                    defaultLeaveBackPercents: 1,
+                    defaultEnterPercents: 0,
+                    defaultLeaveBackPercents: 0,
                     saveChildrenClassPermanent: true
                 }
             ),
@@ -62,9 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     leaveClass: 'leave-half',
                     enterAnimClass: 'in-half',
                     screenHeight: 800,
-                    defaultEnterPercents: 1,
-                    defaultLeaveBackPercents: 1,
+                    defaultEnterPercents: 0,
+                    defaultLeaveBackPercents: 0,
+                    screenHeightDesk: 1800,
                     delayPx: 300,
+                    delayPxDesk: 1300,
                     leaveBackAnimClass: 'out-no-leave',
                 }
             ),
@@ -73,8 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     leaveBackAnimClass: 'out-content-anim-only',
                     hideButton: true,
-                    defaultEnterPercents: 1,
-                    defaultLeaveBackPercents: 1,
+                    defaultEnterPercents: 0,
+                    defaultLeaveBackPercents: 0,
                     delayPx: 300
                 }
             ),
@@ -86,8 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     leaveBackAnimClass: 'out-fade',
                     leaveAnimClass: 'no-anim',
                     showButton: true,
-                    defaultEnterPercents: 1,
+                    defaultEnterPercents: 0,
                     screenHeight: 100,
+                    screenHeightDesk: 300,
+                    delayPxDesk: 100
                 }
             ),
             new Screen(
@@ -97,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     leaveAnimClass: 'out-fade',
                     leaveBackAnimClass: 'out-content-anim-only',
                     screenHeight: 2000,
+                    screenHeightDesk: 2500,
                     delayPx: 1500
                 }
             ),
@@ -105,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     leaveBackAnimClass: 'out-no-leave',
                     defaultEnterPercents: 1,
-                    screenHeight: 2000,
+                    screenHeight: 2500,
                     delayPx: 1500
                 }
             ),
@@ -121,9 +131,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     enterChildClass: 'enter',
                     leaveChildClass: 'leave',
                     leaveBackChildClass: 'leave',
-                    defaultEnterPercents: 1,
-                    screenHeight: 500,
-                    delayPx: 300,
+                    defaultEnterPercents: 0,
+                    screenHeight: 1000,
+                    delayPx: 500,
+                    screenHeightDesk: 1500,
+                    delayPxDesk: 1000,
                     animClassesDelay: 100
                 }
             ),
@@ -131,31 +143,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 `${selectorPart}tenth`,
                 {
                     leaveAnimClass: 'out-fade',
+                    enterClass: 'in-fade-under',
                     enterAnimClass: 'no-anim',
                 }
             ),
             new Screen(
                 `${selectorPart}eleventh`,
                 {
-                    preventSelectors: '.b-eleventh-screen__controls-container'
+                    preventSelectors: '.b-eleventh-screen__controls-container',
+                    screenHeightDesk: 1500,
+                    delayPxDesk: 500,
                 }
             ),
             new Screen(
                 `${selectorPart}twelfth`,
                 {
-                    preventSelectors: '.b-eleventh-screen__controls-container'
+                    preventSelectors: '.b-eleventh-screen__controls-container',
+                    screenHeightDesk: 1500,
+                    delayPxDesk: 500,
                 }
             ),
             new Screen(
                 `${selectorPart}thirteenth`,
                 {
-                    preventSelectors: '.b-eleventh-screen__controls-container'
+                    preventSelectors: '.b-eleventh-screen__controls-container',
+                    screenHeightDesk: 1500,
+                    delayPxDesk: 500,
                 }
             ),
             new Screen(
                 `${selectorPart}fourteenth`,
                 {
                     preventSelectors: '.b-eleventh-screen__controls-container',
+                    screenHeightDesk: 1500,
+                    delayPxDesk: 500,
                     leaveBackAnimClass: 'out-no-leave'
                 }
             ),

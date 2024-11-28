@@ -31,18 +31,13 @@ export default class ScrollAnimation
     scrollEvent(e) {
         const curScreen = this.#screens[this.activeScreen];
         const prevScreen = this.#screens[this.prevScreen];
+        const nextScreen = this.#screens[this.nextScreen];
         let scroll = document.documentElement.scrollTop;
         let curScroll = scroll - prevScreen.delayPx - prevScreen.offsetTop;
 
         if(scroll > prevScreen.offsetTop + prevScreen.scrollHeight) {
-            prevScreen.setPercents(1);
-            curScreen.setDefaultEnterPercents()
             this.changeScreen(true);
         } else if(scroll < prevScreen.offsetTop + prevScreen.delayPx) {
-            curScreen.setPercents(0);
-            prevScreen.noAnim();
-            prevScreen.setDefaultLeaveBackPercents();
-
             if(curScreen.key === 'sixteenth') {
                 let prevSlide = this.#screens[this.prevScreen];
                 
@@ -62,7 +57,17 @@ export default class ScrollAnimation
             if(curScreen.container.classList.contains('in-delay')) {
                 curScreen.container.classList.remove('in-delay');
                 curScreen.child.classList.remove('in-delay')
+
+                let perc = curScreen.container.style.getPropertyValue('--delay-percent');
+
+                if((perc > 0) && (perc < 0.5)) {
+                    curScreen.container.style.setProperty('--delay-percent', 0);
+                } else if((perc > 0.5) && (perc < 1)) {
+                    curScreen.container.style.setProperty('--delay-percent', 1);
+                }
+
                 this.#screens[this.nextScreen].container.classList.remove('visible');
+                this.#screens[this.nextScreen].hide();
             }
             if(curScreen.hideButton) {
                 this.button.classList.add('with-perc');
@@ -171,6 +176,8 @@ export default class ScrollAnimation
 
     changeScreen(next = true) {
         const curScreen = this.#screens[this.activeScreen];
+        const prevScreen = this.#screens[this.prevScreen];
+        const nextScreen = this.#screens[this.nextScreen];
 
         if(
             curScreen.delayPx > 0
@@ -181,17 +188,44 @@ export default class ScrollAnimation
             let curScroll = scroll - curScreen.offsetTop;
             let delayPerc = curScroll / curScreen.delayPx;
 
+            if(curScreen.container.style.getPropertyValue('--perc') != 1) {
+                curScreen.setPercents(1);
+            }
             curScreen.container.style.setProperty('--delay-percent', delayPerc);
             curScreen.container.classList.add('in-delay');
             curScreen.child.classList.add('in-delay');
             this.#screens[this.nextScreen].container.classList.add('visible');
+            this.#screens[this.nextScreen].show();
 
             return;
         } else {
             curScreen.container.classList.remove('in-delay');
             curScreen.child.classList.remove('in-delay');
+            let perc = curScreen.container.style.getPropertyValue('--delay-percent');
+
+            if((perc > 0) && (perc < 0.5)) {
+                curScreen.container.style.setProperty('--delay-percent', 0);
+            } else if((perc > 0.5) && (perc < 1)) {
+                curScreen.container.style.setProperty('--delay-percent', 1);
+            }
+
             if(this.#screens[this.nextScreen]) {
                 this.#screens[this.nextScreen].container.classList.remove('visible');
+                this.#screens[this.nextScreen].hide();
+            }
+        }
+
+        if(next === true) {
+            if(prevScreen) {
+                prevScreen.setPercents(1);                
+            }
+            curScreen.setDefaultLeaveBackPercents();
+            nextScreen.setDefaultEnterPercents();
+        } else {
+            curScreen.setDefaultLeavePercents();
+            prevScreen.setDefaultEnterPercents();
+            if(nextScreen) {
+                nextScreen.setDefaultLeavePercents();
             }
         }
 
@@ -230,8 +264,10 @@ export default class ScrollAnimation
             } else if (index < this.activeScreen - 2) {
                 screen.noAnim();
                 screen.hideTop();
-            } else {
+            } else if (index > this.activeScreen) {
                 screen.noAnim();
+                screen.hide();
+            } else {
                 screen.removeHideTop();
             }
 		});

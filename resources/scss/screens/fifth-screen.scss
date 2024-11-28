@@ -7,6 +7,10 @@ $block-name: 'b-fifth-screen';
     padding-top: 10rem;
     overflow: visible !important;
 
+    @include breakpoint(1280) {
+        padding-top: 18.7rem;
+    }
+
     &__text-container {
         display: flex;
         flex-direction: column;
@@ -49,10 +53,18 @@ $block-name: 'b-fifth-screen';
         animation: show-elem 3s linear both;
         animation-play-state: paused;
         animation-delay: calc(2s - 6s * var(--delay-percent));
+        width: 39rem;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+
+        @include breakpoint(1280) {
+            width: 144rem;
+        }
         
-            & img {
-                height: auto;
-            }
+        & img {
+            height: auto;
+        }
     }
 
     &::before {

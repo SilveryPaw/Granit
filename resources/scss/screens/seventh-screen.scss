@@ -11,6 +11,7 @@ $block-name: 'b-seventh-screen';
     }
 
     &__wrapper {
+        position: relative;
         display: flex;
         height: 100%;
         width: max-content;
@@ -19,6 +20,7 @@ $block-name: 'b-seventh-screen';
         animation: slide-wrapper 9s linear both;
         animation-play-state: paused;
         animation-delay: calc(-9s * var(--delay-percent) * 1.1);
+        z-index: 1;
     }
 
     &__img {

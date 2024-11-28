@@ -22,8 +22,20 @@ $block-name: 'b-sixth-screen';
 
         @include breakpoint(1280) {
             font-size: 4.4rem;
-            max-width: 35rem;
             text-align: start;
+            width: 100%;
+            animation: none;
+        }
+
+        & span.first {
+            @include breakpoint(1280) {
+                position: absolute;
+                left: 12rem;
+                width: 35rem;
+                animation: show-elem 3s linear both;
+                animation-play-state: paused;
+                animation-delay: calc(-9s * var(--delay-percent, 0));
+            }
         }
 
         & span.delimiter {
@@ -36,14 +48,31 @@ $block-name: 'b-sixth-screen';
             @include breakpoint(1280) {
                 position: absolute;
                 top: 39.6rem;
-                right: var(--padding-horizontal);
-                max-width: 35rem;
+                right: 12rem;
+                width: 35rem;
+                animation: show-elem 3s linear both;
+                animation-play-state: paused;
+                animation-delay: calc(3s - 9s * var(--delay-percent, 0));
             }
         }
     }
 
     &.leave-back &__text-container {
         animation-delay: calc(-3s * var(--delay-percent, 0));
+    }
+
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0 0 0 / 20%);
+        z-index: -1;
+        opacity: calc(3 * var(--delay-percent));
+        content: "";
     }
 
     @keyframes show-elem {

@@ -28,6 +28,11 @@ $block-name: 'b-fifteenth-screen';
             font-weight: 700;
             margin-bottom: 1.6rem;
             box-shadow: 0px -24px 64px 0px #1E3996;
+
+            @include breakpoint(1280) {
+                font-size: 3.7rem;     
+                margin-bottom: 2.4rem;           
+            }
         }
 
         &.second {
@@ -37,6 +42,10 @@ $block-name: 'b-fifteenth-screen';
             margin-bottom: 0.2rem;
             box-shadow: 0px 20px 64px 0px #1E3996;
             box-shadow: 0px -20px 64px 0px #1E3996;
+
+            @include breakpoint(1280) {
+                font-size: 10.8rem;
+            }
         }
 
         &.third {
@@ -46,6 +55,10 @@ $block-name: 'b-fifteenth-screen';
             font-weight: 700;
             height: 1.27em;
             box-shadow: 0px -24px 64px 0px #1E3996;
+
+            @include breakpoint(1280) {
+                font-size: 5.4rem;
+            }
         }
     }
 

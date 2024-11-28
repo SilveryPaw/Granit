@@ -3,13 +3,36 @@
 $block-name: 'b-buy-screen';
 
 .#{$block-name} {
-    padding: 5.9rem 2rem 0;
+    padding: 5.9rem 2rem;
     background-color: var(--color-black);
+
+    @include breakpoint(1280) {
+        padding: 18.7rem 6rem;
+    }
+
+    &__title {
+        display: none;
+
+        @include breakpoint(1280) {
+            --lh: 1.1;
+
+            display: block;
+            text-align: center;
+            font-family: Overpass Mono;
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 5rem;
+        }
+    }
 
     &__container {
         display: flex;
         flex-direction: column;
         gap: 3rem;
+
+        @include breakpoint(1280) {
+            flex-direction: row;
+        }
     }
 
     &__ticket-container {
@@ -19,6 +42,12 @@ $block-name: 'b-buy-screen';
         gap: 1.6rem;
         flex-direction: column;
         border: 1px solid var(--color-white);
+
+        @include breakpoint(1280) {
+            flex-basis: calc(50% - 1.5rem);
+            padding: 3.2rem 4rem;
+            gap: 2.4rem;
+        }
 
         &::before {
             position: absolute;
@@ -65,7 +94,10 @@ $block-name: 'b-buy-screen';
                     background: linear-gradient(185.83deg, #E5BC5E 3.8%, #DAA836 95.37%);
                 }
             }
-            // border-image-source: linear-gradient(101.61deg, #CD9614 7.53%, #F8DFA5 53.54%, #DAA835 98.63%);
+
+            & .#{$block-name}__descr {
+                max-width: 40rem;
+            }
         }
     }
 
@@ -76,23 +108,28 @@ $block-name: 'b-buy-screen';
     }
 
     &__value {
-        font-family: Motorblock;
-        font-size: 4.8rem;
-        font-weight: 400;
-        line-height: 5.76rem;
-        text-align: center;
-        text-underline-position: from-font;
-        text-decoration-skip-ink: none;        
+        font-family: Motorblock; 
     }
 
     &__currency {
         font-family: 'OverpassMono';
+
+        @include breakpoint(1280) {
+            padding-top: 0.7rem;
+        }
+    }
+
+    &__value,
+    &__currency {
         font-size: 4.8rem;
         font-weight: 400;
         line-height: 5.76rem;
         text-align: center;
-        text-underline-position: from-font;
-        text-decoration-skip-ink: none;
+
+        @include breakpoint(1280) {
+            font-size: 7rem;
+            line-height: 8.4rem;
+        }
     }
 
     &__label {
@@ -104,6 +141,11 @@ $block-name: 'b-buy-screen';
         text-underline-position: from-font;
         text-decoration-skip-ink: none;
         color: var(--color-gray);
+
+        @include breakpoint(1280) {
+            font-size: 3.2rem;
+            line-height: 4.05rem;
+        }
     }
 
     &__sub {
@@ -116,6 +158,13 @@ $block-name: 'b-buy-screen';
         text-underline-position: from-font;
         text-decoration-skip-ink: none;
         border: 1px solid var(--color-white);
+        width: fit-content;
+        margin: 0 auto;
+
+        @include breakpoint(1280) {
+            font-size: 2.4rem;
+            line-height: 3.03rem;
+        }
     }
 
     &__descr {
@@ -124,8 +173,11 @@ $block-name: 'b-buy-screen';
         font-weight: 600;
         line-height: 2.026rem;
         text-align: center;
-        text-underline-position: from-font;
-        text-decoration-skip-ink: none;
+
+        @include breakpoint(1280) {
+            max-width: 53.5rem;
+            margin: 0 auto;
+        }
     }
 
     &__buy {
@@ -142,6 +194,11 @@ $block-name: 'b-buy-screen';
         font-size: 2.2rem;
         line-height: 1.27;
         z-index: 3;
+
+        @include breakpoint(1280) {
+            width: calc(100% - 12.6rem);
+            margin: 0.6rem auto 0;
+        }
     
         &::after,
         &::before {
@@ -167,5 +224,9 @@ $block-name: 'b-buy-screen';
     &.leave-back &__container,
     &.enter &__container {
         margin-top: calc(-20rem * var(--delay-percent));
+
+        @include breakpoint(1280) {
+            margin-top: 0;
+        }
     }
 }

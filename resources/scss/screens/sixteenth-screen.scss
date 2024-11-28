@@ -26,6 +26,10 @@ $block-name: 'b-sixteenth-screen';
     &__partners-chunk {
         position: relative;
         width: 100vw;
+
+        &.chunk1 .#{$block-name}__partners-wrapper {
+            justify-content: flex-end;
+        }
     }
 
     &__partners-wrapper {

@@ -13,7 +13,7 @@
     --base-transition: var(--base-transition-time) var(--base-transition-function);
 
     @include breakpoint(1280) {
-        --padding-horizontal: 12rem;
+        --padding-horizontal: 6rem;
     }
 }
 

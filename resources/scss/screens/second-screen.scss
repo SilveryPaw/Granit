@@ -55,6 +55,12 @@ $block-name: 'b-second-screen';
 
     &__values-container {
         position: relative;
+
+        @include breakpoint(1280) {
+            display: flex;
+            justify-content: space-around;
+            opacity: var(--delay-percent, 0);
+        }
     }
 
     &__value-container {
@@ -73,6 +79,14 @@ $block-name: 'b-second-screen';
             transform var(--base-transition);
         animation: show-hide 3s linear;
         animation-play-state: paused;
+
+        @include breakpoint(1280) {
+            opacity: 1;
+            position: relative;
+            animation: none;
+            transform: none;
+            flex-basis: 33%;
+        }
         
         &.enter {
             opacity: 1;
@@ -90,42 +104,64 @@ $block-name: 'b-second-screen';
 
         &:nth-child(1) {
             animation-delay: calc(-3s * var(--delay-percent));
-
-            @include breakpoint(1280) {
-                transform: translate(-25vw, -18vh) scale(0);
-
-                &.leave,
-                &.enter {
-                    transform: translate(-25vw, 0) scale(1);
-                }
-            }
         }
 
         &:nth-child(2) {
             animation-delay: calc(1s - 3s * var(--delay-percent));
-
-            @include breakpoint(1280) {
-                transform: translate(0, -18vh) scale(0);
-
-                &.leave,
-                &.enter {
-                    transform: translate(0, 0) scale(1);
-                }
-            }
         }
 
         &:nth-child(3) {
             animation-delay: calc(2s - 3s * var(--delay-percent));
-
-            @include breakpoint(1280) {
-                transform: translate(25vw, -18vh) scale(0);
-
-                &.leave,
-                &.enter {
-                    transform: translate(25vw, 0) scale(1);
-                }
-            }
         }
+    }
+
+    &__additional-container {
+        display: none;
+
+        @include breakpoint(1280) {
+            display: flex;
+            justify-content: space-around;
+            border-top: none;
+            width: calc(100% + 0.2rem);
+            opacity: var(--delay-percent, 0);
+            transition: opacity 0.1s linear;
+        }
+    }
+
+    &__add-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-basis: 33.333%;
+    }
+
+    &__add-text {
+        position: relative;
+        font-family: OverpassMono;
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 2.28rem;
+        text-align: left;
+        padding: 3.45rem 3rem;
+    }
+
+    &__add-item:not(:last-child) &__add-text::after {
+        position: absolute;
+        right: 0;
+        width: 0.1rem;
+        background-color: var(--color-white);
+        opacity: 0.2;
+        content: "";
+        height: 7.5rem;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    &__icon-container {
+        position: absolute;
+        top: -0.55rem;
     }
 
     &__value {

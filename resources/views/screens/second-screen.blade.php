@@ -24,6 +24,18 @@
                 </div>
             @endforeach
         </div>
+        <div class="{{ $blockName }}__additional-container">
+            @foreach($values as $item)
+                <div class="{{ $blockName }}__add-item">
+                    <div class="{{ $blockName }}__icon-container">
+                        {!! $icon !!}
+                    </div>
+                    <div class="{{ $blockName }}__add-text">
+                        {!! $item['add-text'] !!}
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
     <picture class="{{ $blockName }}__background c-background">
         <source srcset="{{ $bg['mobile'] }}" media="(max-width:767px)"/>

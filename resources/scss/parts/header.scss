@@ -8,11 +8,16 @@ $block-name: 'b-header';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 2rem;
+    padding: 2rem var(--padding-horizontal);
     width: 100vw;
-    z-index: 3;
+    z-index: 5;
     transform: translateY(0);
     transition: transform var(--base-transition-time) ease-in-out;
+
+    @include breakpoint(1280) {
+        position: fixed;
+        padding: 2rem 6rem;
+    }
 
     &__logo {
         position: relative;

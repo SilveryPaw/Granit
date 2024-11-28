@@ -61,6 +61,7 @@ class MainController
             $desk = \Storage::disk('public')->url($this->data['second_screen_bg_desk']);
         }
         return view('screens.second-screen', [
+            'icon' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/arrow.svg'),
             'title' => preg_split('/ /', $this->data['second_screen_title']),
             'values' => $this->data['second_screen_values'],
             'bg' => [
