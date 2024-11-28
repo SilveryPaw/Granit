@@ -15,9 +15,11 @@ $block-name: 'b-fifteenth-screen';
 
     &__part {
         &.first {
+            position: relative;
             font-size: 2.4rem;
             font-weight: 700;
             margin-bottom: 1.6rem;
+            box-shadow: 0px -24px 64px 0px #1E3996;
         }
 
         &.second {
@@ -25,6 +27,8 @@ $block-name: 'b-fifteenth-screen';
             height: 1em;
             font-weight: 400;
             margin-bottom: 0.2rem;
+            box-shadow: 0px 20px 64px 0px #1E3996;
+            box-shadow: 0px -20px 64px 0px #1E3996;
         }
 
         &.third {
@@ -33,6 +37,7 @@ $block-name: 'b-fifteenth-screen';
             font-size: 3.5rem;
             font-weight: 700;
             height: 1.27em;
+            box-shadow: 0px -24px 64px 0px #1E3996;
         }
     }
 

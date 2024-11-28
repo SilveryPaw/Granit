@@ -11,9 +11,9 @@ $block-name: 'b-ninth-screen';
         height: 1.2em;
         text-align: center;
         margin-bottom: 4.6vh;
-        transform: scale(0.4);
+        transform: scale(calc(var(--perc, 0)));
         transform-origin: top;
-        transition: transform 4s ease;
+        transition: transform 0.1s linear;
 
         @include breakpoint(1280) {
             font-size: 4rem;
@@ -21,23 +21,16 @@ $block-name: 'b-ninth-screen';
     }
 
     &__image {
-        transform: scale(0.4);
+        transform: scale(calc(var(--perc, 0)));
         margin: 0 auto;
-        transition: transform 4s ease;
+        transition: transform 0.1s linear;
         width: 31.4rem;
     }
 
-    &.enter {
+    &.in-delay {
         .#{$block-name}__title,
         .#{$block-name}__image {
-            transform: scale(1);
-        }
-    }
-
-    &.leave {
-        .#{$block-name}__title,
-        .#{$block-name}__image {
-            transform: scale(1.1);
+            transform: scale(calc(1 * ((var(--perc, 0) + var(--delay-percent, 0) * 0.1))));
         }
     }
 }

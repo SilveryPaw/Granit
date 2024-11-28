@@ -19,6 +19,7 @@ class MainController
                 'fourth' => $this->getFourthScreen(),
                 'fifth' => $this->getFifthScreen(),
                 'sixth' => $this->getSixthScreen(),
+                'buy' => $this->getBuyScreen(),
                 'white' => $this->getWhiteScreen(),
                 'seventh' => $this->getSeventhScreen(),
                 'eighth' => $this->getEighthScreen(),
@@ -105,6 +106,11 @@ class MainController
         return view('screens.sixth-screen', [
             'text' => $this->data['sixth_screen_text'],
         ]);
+    }
+
+    private function getBuyScreen()
+    {
+        return view('screens.buy-screen');
     }
 
     private function getWhiteScreen()

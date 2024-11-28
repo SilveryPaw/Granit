@@ -16,7 +16,9 @@ $block-name: 'b-seventh-screen';
         width: max-content;
         align-items: center;
         padding-right: 4rem;
-        transform: translateX(100vw);
+        animation: slide-wrapper 9s linear both;
+        animation-play-state: paused;
+        animation-delay: calc(-9s * var(--delay-percent) * 1.1);
     }
 
     &__img {
@@ -36,9 +38,12 @@ $block-name: 'b-seventh-screen';
 
     &__title {
         --lh: 1.2;
+        --from: 100vw;
+        --to: calc(100% + 100vw);
 
         position: absolute;
         font-size: 10rem;
+        font-weight: 700;
         top: 2rem;
         bottom: 0;
         left: 0;
@@ -47,8 +52,10 @@ $block-name: 'b-seventh-screen';
         white-space: nowrap;
         letter-spacing: 0.24em;
         text-align: justify;
-        transform: translateX(100vw);
         z-index: 0;
+        animation: slide-title 9s linear both;
+        animation-play-state: paused;
+        animation-delay: calc(-9s * var(--delay-percent) * 1.1);
 
         @include breakpoint(1280) {
             font-size: 16rem;
@@ -59,13 +66,15 @@ $block-name: 'b-seventh-screen';
     &__text {
         --lh: 1.27;
 
-        opacity: 0;
         position: absolute;
         width: calc(100% - 2 * var(--padding-horizontal));
+        min-height: 3.81em;
         font-size: 1.8rem;
         font-weight: 700;
         text-align: justify;
-        top: 80vh;
+        bottom: 9.6rem;
+        transition: opacity 0.1s linear;
+        opacity: calc(1 * 0.3 * var(--delay-percent, 0));
 
         @include breakpoint(1280) {
             font-size: 2rem;
@@ -73,19 +82,26 @@ $block-name: 'b-seventh-screen';
         }
     }
 
-    &.enter {
-        .#{$block-name}__text {
-            opacity: 1;
-            transition: opacity 3s;
+    &__background {
+        background-color: var(--color-black);
+    }
+
+    @keyframes slide-wrapper {
+        from {
+            transform: translateX(100vw);
         }
 
-        .#{$block-name}__wrapper {
-            transition: transform 9s ease-in-out;
+        to {
             transform: translateX(calc(-100% + 100vw - 3 * var(--padding-horizontal)));
         }
+    }
 
-        .#{$block-name}__title {
-            transition: transform 9s ease-in-out;
+    @keyframes slide-title {
+        from {
+            transform: translate(100vw);
+        }
+
+        to {
             transform: translateX(calc(-100% + 100vw - 2 * var(--padding-horizontal)));
         }
     }

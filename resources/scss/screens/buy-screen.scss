@@ -1,0 +1,165 @@
+@use '../config/config' as *;
+
+$block-name: 'b-buy-screen';
+
+.#{$block-name} {
+    padding: 5.9rem 2rem 0;
+    background-color: var(--color-black);
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    &__ticket-container {
+        position: relative;
+        padding: 3.2rem 2rem;
+        display: flex;
+        gap: 1.6rem;
+        flex-direction: column;
+        border: 1px solid var(--color-white);
+
+        &::before {
+            position: absolute;
+            width: 7.5rem;
+            height: 7.5rem;
+            top: -0.2rem;
+            right: -0.2rem;
+            background-color: var(--color-black);
+            content: "";
+        }
+
+        &::after {
+            position: absolute;
+            width: 7.5rem;
+            height: 7.5rem;
+            top: -0.2rem;
+            right: -0.2rem;
+            clip-path: polygon(0 1%, 0 0, 100% 100%, 99% 100%);
+            background-color: var(--color-white);
+            content: "";
+        }
+
+        &.golden {
+            border-color: #F8DFA5;
+
+            &::after {
+                background-color: #F8DFA5;
+            }
+
+            & .#{$block-name}__cost {
+                background: linear-gradient(101.61deg, #CD9614 7.53%, #F8DFA5 53.54%, #DAA835 98.63%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            & .#{$block-name}__buy {
+                background: linear-gradient(101.61deg, #CD9614 7.53%, #F8DFA5 53.54%, #DAA835 98.63%);
+
+                &::before {
+                    background: linear-gradient(6.6deg, #CD9615 1.37%, #CE9717 51.01%, #D6A533 94.81%);
+                }
+
+                &::after {
+                    background: linear-gradient(185.83deg, #E5BC5E 3.8%, #DAA836 95.37%);
+                }
+            }
+            // border-image-source: linear-gradient(101.61deg, #CD9614 7.53%, #F8DFA5 53.54%, #DAA835 98.63%);
+        }
+    }
+
+    &__cost {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    &__value {
+        font-family: Motorblock;
+        font-size: 4.8rem;
+        font-weight: 400;
+        line-height: 5.76rem;
+        text-align: center;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;        
+    }
+
+    &__currency {
+        font-family: 'OverpassMono';
+        font-size: 4.8rem;
+        font-weight: 400;
+        line-height: 5.76rem;
+        text-align: center;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+    }
+
+    &__label {
+        font-family: 'OverpassMono';
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 2.5rem;
+        text-align: center;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        color: var(--color-gray);
+    }
+
+    &__sub {
+        padding: 0.4rem 2.4rem;
+        font-family: 'OverpassMono';
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 2.28rem;
+        text-align: center;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        border: 1px solid var(--color-white);
+    }
+
+    &__descr {
+        font-family: 'OverpassMono';
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 2.026rem;
+        text-align: center;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+    }
+
+    &__buy {
+        position: relative;
+        font-weight: 600;
+        width: 26.4rem;
+        height: 4.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0.8rem auto 0;
+        background-color: var(--color-white);
+        color: var(--color-black);
+        font-size: 2.2rem;
+        line-height: 1.27;
+        z-index: 3;
+    
+        &::after,
+        &::before {
+            position: absolute;
+            height: 4.8rem;
+            width: 2.4rem;
+            background-color: var(--color-white);
+            content: "";
+        }
+    
+        &::before {
+            left: -2.4rem;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
+        }
+    
+        &::after {
+            right: -2.4rem;
+            clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
+        }
+    }
+}

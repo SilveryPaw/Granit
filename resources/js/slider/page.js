@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         inactiveClass: 'leave'
                     },
                     screenHeight: 2000,
+                    defaultEnterPercents: 1,
                     delayPx: 1000
                 }
             ),
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     leaveAnimClass: 'out-scale-under',
                     leaveBackAnimClass: 'out-scale-under',
                     screenHeight: 2000,
+                    defaultEnterPercents: 1,
                     delayPx: 1000
                 }
             ),
@@ -42,8 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 `${selectorPart}fifth`,
                 {
                     firstTimeDelay: 4400,
-                    delayTime: 1500,
+                    screenHeight: 1500,
+                    delayPx: 1000,
                     leaveBackAnimClass: 'out-half-leave',
+                    defaultEnterPercents: 1,
+                    defaultLeaveBackPercents: 1,
                     saveChildrenClassPermanent: true
                 }
             ),
@@ -51,7 +56,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 `${selectorPart}sixth`,
                 {
                     leaveClass: 'leave-half',
+                    enterAnimClass: 'in-half',
+                    screenHeight: 800,
+                    defaultEnterPercents: 1,
+                    defaultLeaveBackPercents: 1,
+                    delayPx: 300,
                     leaveBackAnimClass: 'out-no-leave',
+                }
+            ),
+            new Screen(
+                `${selectorPart}buy`,
+                {
+                    leaveBackAnimClass: 'out-no-leave'
                 }
             ),
             new Screen(
@@ -60,34 +76,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     enterClass: 'enter-polygon-bottom',
                     enterAnimClass: 'in-polygon-bottom',
                     leaveBackAnimClass: 'out-fade',
-                    leaveAnimClass: 'out-fade',
-                    transitionTime: 1500,
-                    animClassesDelay: 100
+                    leaveAnimClass: 'no-anim',
+                    defaultEnterPercents: 1,
+                    screenHeight: 100,
                 }
             ),
             new Screen(
                 `${selectorPart}seventh`,
                 {
-                    enterAnimClass: 'in-fade-under',
+                    enterAnimClass: 'in-fade',
                     leaveAnimClass: 'out-fade',
                     leaveBackAnimClass: 'out-content-anim-only',
-                    saveChildrenClassTillAnimForward: true,
-                    saveChildrenClassTillAnim: true,
-                    saveChildrenClassTillAnimBack: true,
-                    transitionTime: 1500,
-                    delayTime: 1500,
+                    screenHeight: 2000,
+                    delayPx: 1500
                 }
             ),
             new Screen(
                 `${selectorPart}eighth`,
                 {
                     leaveBackAnimClass: 'out-no-leave',
-                    saveChildrenClassTillAnimForward: true,
-                    saveChildrenClassTillAnimBack: true,
-                    saveChildrenClassTillAnim: true,
-                    transitionTime: 1500,
-                    delayTime: 1500,
-                    nextAnimTime: 4000
+                    defaultEnterPercents: 1,
+                    screenHeight: 2000,
+                    delayPx: 1500
                 }
             ),
             new Screen(
@@ -96,13 +106,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     enterClass: 'enter-polygon-center',
                     enterAnimClass: 'in-polygon-center',
                     leaveBackClass: 'leave-polygon-center',
-                    leaveBackAnimClass: 'out-polygon-center',
+                    leaveBackAnimClass: 'out-polygon-back-center',
                     leaveClass: 'leave-polygon-center',
                     leaveAnimClass: 'out-polygon-center',
                     enterChildClass: 'enter',
                     leaveChildClass: 'leave',
                     leaveBackChildClass: 'leave',
-                    transitionTime: 4000,
+                    defaultEnterPercents: 1,
+                    screenHeight: 500,
+                    delayPx: 300,
                     animClassesDelay: 100
                 }
             ),
@@ -110,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `${selectorPart}tenth`,
                 {
                     leaveAnimClass: 'out-fade',
+                    enterAnimClass: 'no-anim',
                 }
             ),
             new Screen(
@@ -134,8 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 `${selectorPart}fourteenth`,
                 {
                     preventSelectors: '.b-eleventh-screen__controls-container',
-                    leaveBackAnimClass: 'out-hide',
-                    nextAnimTime: 3000
+                    // leaveBackAnimClass: 'out-hide',
+                    leaveBackAnimClass: 'out-no-leave'
                 }
             ),
             new Screen(

@@ -15,8 +15,10 @@ $block-name: 'b-sixth-screen';
         font-size: 2.8rem;
         font-weight: 700;
         text-align: justify;
-        opacity: 0;
-        transition: opacity 1s ease;
+        transition: opacity 0.1s linear;
+        animation: show-elem 3s linear both;
+        animation-play-state: paused;
+        animation-delay: calc(-3s * var(--perc, 0));
 
         @include breakpoint(1280) {
             font-size: 4.4rem;
@@ -40,7 +42,19 @@ $block-name: 'b-sixth-screen';
         }
     }
 
-    &.enter &__text-container {
-        opacity: 1;
+    &.leave-back &__text-container {
+        animation-delay: calc(-3s * var(--delay-percent, 0));
+    }
+
+    @keyframes show-elem {
+        from {
+            opacity: 0;
+            transform: translateX(3rem);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 }

@@ -31,6 +31,8 @@ export default class Screen
     #screenIndex;
     #screenHeight;
     #delayPx = 0;
+    #defaultEnterPercents = 0;
+    #defaultLeaveBackPercents = 0;
 
     constructor(screenSelector, options = {})
     {
@@ -49,6 +51,8 @@ export default class Screen
         this.#screen.style.setProperty('--anim-delay', this.transitionTime + 'ms')
         this.#screen.style.setProperty('--next-anim-delay', this.nextAnimTime + 'ms')
         this.#screenHeight = options.screenHeight ?? window.innerHeight;
+        this.#defaultEnterPercents = options.defaultEnterPercents ?? this.#defaultEnterPercents;
+        this.#defaultLeaveBackPercents = options.defaultLeaveBackPercents ?? this.#defaultLeaveBackPercents;
 
         if(options.leaveClass) {
             this.#leaveClass = options.leaveClass;
@@ -124,6 +128,10 @@ export default class Screen
 
         this.#tempScreen = document.querySelector(`.${this.#blockName}__temp-screen[data-index="${this.#screenIndex}"]`);
         this.#tempScreen.style.setProperty('height', this.#screenHeight + 'px');
+    }
+
+    get key() {
+        return this.container.dataset.index;
     }
 
     get delayPx() {
@@ -329,10 +337,11 @@ export default class Screen
         }
         
         this.#screen.classList.add(this.#leaveAnimClass);
-        if(this.#enterAnimClass !== this.#leaveAnimClass) {
+
+        if(this.#leaveAnimClass != this.#enterAnimClass) {
             this.#screen.classList.remove(this.#enterAnimClass);
         }
-        if(this.#enterAnimClass !== this.#leaveBackAnimClass) {
+        if(this.#leaveAnimClass != this.#leaveBackAnimClass) {
             this.#screen.classList.remove(this.#leaveBackAnimClass);
         }
     }
@@ -408,13 +417,30 @@ export default class Screen
         this.#screen.style.setProperty('--perc', perc);
     }
 
+    setDelayPercents(perc) {
+        this.#screen.style.setProperty('--delay-percent', perc)
+    }
+
+    setDefaultEnterPercents() {
+        this.#screen.style.setProperty('--perc', this.#defaultEnterPercents);
+    }
+
+    setDefaultLeaveBackPercents() {
+        this.#screen.style.setProperty('--perc', this.#defaultLeaveBackPercents);
+    }
+
     clearPercents(perc) {
         this.#screen.style.removeProperty('--perc');
     }
 
     hideTop()
     {
-        // this.#screen.classList.add('hide-top');
+        this.#screen.classList.add('hide-top');
+    }
+
+    removeHideTop()
+    {
+        this.#screen.classList.remove('hide-top');
     }
 
     noAnim()
