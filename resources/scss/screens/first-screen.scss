@@ -17,6 +17,8 @@ $block-name: 'b-first-screen';
         object-fit: cover;
         object-position: center;
         background-color: var(--color-black);
+        user-select: none;
+        pointer-events: none;
     }
 
     &__text-container {
