@@ -23,6 +23,7 @@ export default class Screen
     #saveChildrenClassTillAnimForward = false;
     #saveChildrenClassPermanent = false;
     #enablePrevents = false;
+    #permanentClass;
     #prevents = [];
     #leaveBackTimeout;
     #leaveTimeout;
@@ -34,6 +35,7 @@ export default class Screen
     #delayPx = 0;
     #delayPxDesk = 0;
     #defaultEnterPercents = 0;
+    #defaultEnterReturnPercents = 1;
     #defaultLeaveBackPercents = 0;
     #defaultLeavePercents = 0;
     #hideBuyButton = false;
@@ -59,8 +61,14 @@ export default class Screen
         this.#screenHeight = options.screenHeight ?? window.innerHeight;
         this.#screenHeightDesk = options.screenHeightDesk ?? null;
         this.#defaultEnterPercents = options.defaultEnterPercents ?? this.#defaultEnterPercents;
+        this.#defaultEnterReturnPercents = options.defaultEnterReturnPercents ?? this.#defaultEnterReturnPercents;
         this.#defaultLeaveBackPercents = options.defaultLeaveBackPercents ?? this.#defaultLeaveBackPercents;
         this.#defaultLeavePercents = options.defaultLeavePercents ?? this.#defaultLeavePercents;
+
+        if(options.permanentClass) {
+            this.#permanentClass = options.permanentClass;
+            this.#screen.classList.add(options.permanentClass);
+        }
 
         if(options.leaveClass) {
             this.#leaveClass = options.leaveClass;
@@ -306,6 +314,7 @@ export default class Screen
     enter()
     {
         this.#screen.style.setProperty('--anim-delay', this.transitionTime + 'ms');
+
         this.#screen.classList.add(this.#enterClass);
         if(this.#enterClass != this.#leaveClass) {
             this.#screen.classList.remove(this.#leaveClass);
@@ -464,6 +473,10 @@ export default class Screen
 
     setDefaultEnterPercents() {
         this.#screen.style.setProperty('--perc', this.#defaultEnterPercents);
+    }
+
+    setDefaultEnterReturnPercents() {
+        this.#screen.style.setProperty('--perc', this.#defaultEnterReturnPercents);
     }
 
     setDefaultLeaveBackPercents() {

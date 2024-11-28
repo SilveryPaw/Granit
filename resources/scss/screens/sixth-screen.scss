@@ -71,7 +71,7 @@ $block-name: 'b-sixth-screen';
         height: 100%;
         background-color: rgba(0 0 0 / 20%);
         z-index: -1;
-        opacity: calc(3 * var(--delay-percent));
+        opacity: calc(3 * var(--delay-percent, 0));
         content: "";
     }
 

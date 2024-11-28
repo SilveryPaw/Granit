@@ -60,7 +60,7 @@ $block-name: 'b-fourth-screen';
         }
 
         &.top {
-            width: 100vw;
+            width: 39rem;
             top: 15.6rem;
             left: 0;
             right: 0;
@@ -72,10 +72,12 @@ $block-name: 'b-fourth-screen';
         }
 
         &.bottom {
-            width: 113vw;
+            width: 39rem;
             height: auto;
             bottom: 0;
-            left: -6.67vw;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
         }
     }
 

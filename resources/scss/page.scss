@@ -35,38 +35,55 @@ $block-name: 'b-page';
             z-index: 1;
         }
 
-        &.enter-polygon-bottom {
+        &.polygon-bottom {
+            --default-max-scale: 5;
             --offset: 50%;
+
+            clip-path: $polygonBottom;
+
+            @include breakpoint(1280) {
+                --default-max-scale: 10;
+            }
+        }
+
+        &.polygon-center {
+            --default-max-scale: 5;
+
+            clip-path: $polygonCentered;
+
+            @include breakpoint(1280) {
+                --default-max-scale: 10;
+            }
+        }
+
+        &.enter-polygon-bottom {
             --scale: 0;
 
             transform: translateY(0);
-            transition: clip-path var(--anim-delay, 1s);
+            transition: clip-path 0.1s linear;
             opacity: 1;
             visibility: visible;
             z-index: 1;
-            clip-path: $polygonBottom;
         }
 
         &.enter-polygon-center {
             --scale: 0;
 
             transform: translateY(0);
-            transition: clip-path var(--anim-delay, 1s);
+            transition: clip-path 0.1s linear;
             opacity: 1;
             visibility: visible;
             z-index: 2;
-            clip-path: $polygonCentered;
         }
 
         &.leave-polygon-center {
             --scale: 10;
 
             transform: translateY(0);
-            transition: clip-path var(--anim-delay, 1s);
+            transition: clip-path 0.1s linear;
             opacity: 1;
             visibility: visible;
             z-index: 1;
-            clip-path: $polygonCentered;
         }
 
         &.leave {
@@ -114,7 +131,6 @@ $block-name: 'b-page';
 
         &.in-polygon-bottom {
             --scale: calc(10 * var(--perc, 1));
-            --offset: 50%;
 
             transition: clip-path 0.1s linear;
             z-index: 2;

@@ -53,10 +53,6 @@ class PageDataResource extends ModelResource
                             ->hideOnIndex(),
                         Text::make('Дата', 'first_screen_date')
                             ->hideOnIndex(),
-                        Image::make('Задний фон', 'first_screen_bg')
-                            ->hideOnIndex(),
-                        Image::make('Задний фон (для десктопа)', 'first_screen_bg_desk')
-                            ->hideOnIndex()
                     ]),
                     Tab::make('Второй экран', [
                         Text::make('Заголовок', 'second_screen_title')
@@ -107,10 +103,10 @@ class PageDataResource extends ModelResource
                         Text::make('Текст', 'sixth_screen_text')
                             ->unescape()
                             ->hideOnIndex(),
-                        Image::make('Задний фон', 'sixth_screen_bg')
-                            ->hideOnIndex(),
-                        Image::make('Задний фон (для десктопа)', 'sixth_screen_bg_desk')
-                            ->hideOnIndex()
+                        // Image::make('Задний фон', 'sixth_screen_bg')
+                        //     ->hideOnIndex(),
+                        // Image::make('Задний фон (для десктопа)', 'sixth_screen_bg_desk')
+                        //     ->hideOnIndex()
                     ]),
                     Tab::make('Седьмой экран', [
                         Text::make('Заголовок', 'seventh_screen_title')
@@ -262,7 +258,8 @@ class PageDataResource extends ModelResource
                                 Text::make('Ссылка на соц. сеть', 'link'),
                                 Image::make('Иконка в формате svg', 'icon')
                                     ->allowedExtensions(['svg'])
-                            ]),
+                            ])
+                            ->hideOnIndex(),
                         Json::make('Контакты', 'eighteenth_screen_contacts')
                             ->fields([
                                 Text::make('Заголовок', 'title'),
@@ -270,6 +267,8 @@ class PageDataResource extends ModelResource
                             ])
                             ->hideOnIndex(),
                         Text::make('Копирайт', 'eighteenth_screen_label')
+                            ->hideOnIndex(),
+                        Text::make('Ссылка телеграм для заголовка', 'eighteenth_screen_tg_link')
                             ->hideOnIndex(),
                         Image::make('Задний фон', 'eighteenth_screen_bg')
                             ->hideOnIndex(),

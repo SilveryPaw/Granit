@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     enterAnimClass: 'in-polygon-bottom',
                     leaveBackAnimClass: 'out-fade',
                     leaveAnimClass: 'no-anim',
+                    permanentClass: 'polygon-bottom',
                     showButton: true,
                     defaultEnterPercents: 0,
                     screenHeight: 100,
@@ -128,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     leaveBackAnimClass: 'out-polygon-back-center',
                     leaveClass: 'leave-polygon-center',
                     leaveAnimClass: 'out-polygon-center',
+                    permanentClass: 'polygon-center',
                     enterChildClass: 'enter',
                     leaveChildClass: 'leave',
                     leaveBackChildClass: 'leave',
@@ -187,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     enterAnimClass: 'in-polygon-center',
                     leaveClass: 'leave-polygon-center',
                     leaveAnimClass: 'out-polygon-center',
+                    permanentClass: 'polygon-center',
                     enterChildClass: 'enter',
                     leaveChildClass: 'leave',
                     leaveBackChildClass: 'leave',
@@ -213,11 +216,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const header = document.querySelector(`.${headerClass}`);
     const burgerButton = header.querySelector(`.${headerClass}__burger-button`);
+    const menu = header.querySelector(`.${headerClass}__menu`);
     const burgerMenu = header.querySelector(`.${headerClass}__burger-menu`);
 
     burgerButton.addEventListener('click', function() {
         burgerButton.classList.toggle('active');
         burgerMenu.classList.toggle('active');
+    });
+
+    menu.querySelectorAll(`.${headerClass}__menu-item`).forEach(item => {
+        item.addEventListener('click', function() {
+            anim.toScreen(item.dataset.index);
+        });
     });
 
     burgerMenu.querySelectorAll(`.${headerClass}__burger-item`).forEach(item => {

@@ -24,11 +24,41 @@ $block-name: 'b-header';
         z-index: 1;
     }
 
+    &__menu {
+        display: none;
+
+        @include breakpoint(1280) {
+            margin-left: auto;
+            display: flex;
+            gap: 3.2rem;
+            margin-right: 6.4rem;
+        }
+    }
+
+    &__tg-link {
+        display: none;
+
+        @include breakpoint(1280) {
+            display: initial;
+        }
+    }
+
+    &__menu-item {
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 2.2rem;
+        text-align: center;
+    }
+
     &__burger-button {
         position: relative;
         width: 4.8rem;
         height: 3.7rem;
         z-index: 1;
+
+        @include breakpoint(1280) {
+            display: none;
+        }
 
         &::before,
         &::after {

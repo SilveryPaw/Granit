@@ -13,6 +13,10 @@ $block-name: 'b-second-screen';
         flex-direction: column;
         gap: 6.7rem;
         padding: 10rem var(--padding-horizontal);
+
+        @include breakpoint(1280) {
+            padding: 18.7rem var(--padding-horizontal);
+        }
     }
 
     &__title {

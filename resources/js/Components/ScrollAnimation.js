@@ -188,6 +188,10 @@ export default class ScrollAnimation
             let curScroll = scroll - curScreen.offsetTop;
             let delayPerc = curScroll / curScreen.delayPx;
 
+            if(prevScreen.container.style.getPropertyValue('--perc') != 1) {
+                prevScreen.setPercents(1);
+            }
+
             if(curScreen.container.style.getPropertyValue('--perc') != 1) {
                 curScreen.setPercents(1);
             }
@@ -223,7 +227,7 @@ export default class ScrollAnimation
             nextScreen.setDefaultEnterPercents();
         } else {
             curScreen.setDefaultLeavePercents();
-            prevScreen.setDefaultEnterPercents();
+            prevScreen.setDefaultEnterReturnPercents();
             if(nextScreen) {
                 nextScreen.setDefaultLeavePercents();
             }

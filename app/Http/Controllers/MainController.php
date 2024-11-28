@@ -288,6 +288,8 @@ class MainController
     {
         return view('parts.header', [
             'logo' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/logo.svg'),
+            'tgIcon' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/tg.svg'),
+            'tgLink' => '',
             'menu' => [
                 'third' => 'Шоу',
                 'tenth' => 'Лайнап',

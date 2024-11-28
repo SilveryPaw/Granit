@@ -18,25 +18,25 @@
 }
 
 $polygonCentered: polygon(
-    50% calc(50% - 12.6rem * var(--scale, 1) + var(--offset, 0rem)),
-    calc(50% + 8.9rem * var(--scale, 1)) calc(50% - 8.95rem * var(--scale, 1) + var(--offset, 0rem)),
-    calc(50% + 12.65rem * var(--scale, 1)) calc(50% + var(--offset, 0rem)),
-    calc(50% + 8.9rem * var(--scale, 1)) calc(50% + 8.95rem * var(--scale, 1) + var(--offset, 0rem)),
-    50% calc(50% + 12.6rem * var(--scale, 1) + var(--offset, 0rem)),
-    calc(50% - 8.9rem * (var(--scale, 1))) calc(50% + 8.95rem * var(--scale, 1) + var(--offset, 0rem)),
-    calc(50% - 12.65rem * var(--scale, 1)) calc(50% + var(--offset, 0rem)),
-    calc(50% - 8.9rem * var(--scale, 1)) calc(50% - 8.95rem * var(--scale, 1) + var(--offset, 0rem)),
-    50% calc(50% - 12.6rem * var(--scale, 1) + var(--offset, 0rem))
+    50% calc(50% - 12.6rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    calc(50% + 8.9rem * var(--scale, var(--default-max-scale, 1))) calc(50% - 8.95rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    calc(50% + 12.65rem * var(--scale, var(--default-max-scale, 1))) calc(50% + var(--offset, 0rem)),
+    calc(50% + 8.9rem * var(--scale, var(--default-max-scale, 1))) calc(50% + 8.95rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    50% calc(50% + 12.6rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    calc(50% - 8.9rem * (var(--scale, var(--default-max-scale, 1)))) calc(50% + 8.95rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    calc(50% - 12.65rem * var(--scale, var(--default-max-scale, 1))) calc(50% + var(--offset, 0rem)),
+    calc(50% - 8.9rem * var(--scale, var(--default-max-scale, 1))) calc(50% - 8.95rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    50% calc(50% - 12.6rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem))
 );
 
 $polygonBottom: polygon(
-    50% calc(50% - 21.6rem * var(--scale, 1) + var(--offset, 0rem)),
-    calc(50% + 8.9rem * var(--scale, 1)) calc(50% - 17.8rem * var(--scale, 1) + var(--offset, 0rem)),
-    calc(50% + 12.65rem * var(--scale, 1)) calc(50% - 8.95rem * var(--scale, 1) + var(--offset, 0rem)),
-    calc(50% + 8.9rem * var(--scale, 1)) calc(50% + var(--offset, 0rem)),
-    50% calc(50% + 3.7rem * var(--scale, 1) + var(--offset, 0rem)),
-    calc(50% - 8.9rem * (var(--scale, 1))) calc(50% + var(--offset, 0rem)),
-    calc(50% - 12.65rem * var(--scale, 1)) calc(50% - 8.95rem * var(--scale, 1) + var(--offset, 0rem)),
-    calc(50% - 8.9rem * var(--scale, 1)) calc(50% - 17.8rem * var(--scale, 1) + var(--offset, 0rem)),
-    50% calc(50% - 21.6rem * var(--scale, 1) + var(--offset, 0rem))
+    50% calc(50% - 21.6rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    calc(50% + 8.9rem * var(--scale, var(--default-max-scale, 1))) calc(50% - 17.8rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    calc(50% + 12.65rem * var(--scale, var(--default-max-scale, 1))) calc(50% - 8.95rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    calc(50% + 8.9rem * var(--scale, var(--default-max-scale, 1))) calc(50% + var(--offset, 0rem)),
+    50% calc(50% + 3.7rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    calc(50% - 8.9rem * (var(--scale, var(--default-max-scale, 1)))) calc(50% + var(--offset, 0rem)),
+    calc(50% - 12.65rem * var(--scale, var(--default-max-scale, 1))) calc(50% - 8.95rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    calc(50% - 8.9rem * var(--scale, var(--default-max-scale, 1))) calc(50% - 17.8rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem)),
+    50% calc(50% - 21.6rem * var(--scale, var(--default-max-scale, 1)) + var(--offset, 0rem))
 );
