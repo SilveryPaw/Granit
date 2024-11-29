@@ -3,9 +3,17 @@
 @endphp
 
 <div class="{{ $blockName }}">
-    <video class="{{ $blockName }}__video" autoplay muted loop>
-        <source src="/video/first-bg.mp4"/>
-    </video>
+    <fieldset disabled>
+        <video
+            class="{{ $blockName }}__video"
+            autoplay
+            muted
+            loop
+            playsinline
+        >
+            <source src="/video/first-bg.mp4"/>
+        </video>
+    </fieldset>
     <div class="{{ $blockName }}__text-container">
         <div class="{{ $blockName }}__subtitle c-font-overpass">
             {!! $subtitle !!}

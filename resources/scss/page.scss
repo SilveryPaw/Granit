@@ -36,16 +36,12 @@ $block-name: 'b-page';
         }
 
         &.polygon-bottom {
-            --offset: 50vh;
-
             will-change: clip-path;
-            animation: show-from-polygon-bottom 3s linear both;
-            animation-play-state: paused;
-            animation-delay: calc(-3s *var(--perc));
+            animation: show-from-polygon-bottom 3s linear both paused calc(-3s * var(--perc));
             transform: translate3d(0, 0, 0);
 
             @include breakpoint(1280) {
-                --default-max-scale: 10;
+                animation: show-from-polygon-bottom-desk 3s linear both paused calc(-3s * var(--perc));
             }
 
             &.leave-back {
@@ -54,40 +50,32 @@ $block-name: 'b-page';
         }
 
         &.polygon-center {
-            --default-max-scale: 5;
-
             will-change: clip-path;
-            clip-path: $polygonCentered;
+            animation: show-from-polygon-center 3s linear both paused calc(-3s * var(--perc, 0));
             transform: translate3d(0, 0, 0);
 
             @include breakpoint(1280) {
-                --default-max-scale: 10;
+                animation: show-from-polygon-center-desk 3s linear both paused calc(-3s * var(--perc, 0));
+            }
+
+            &.in-delay {
+                animation-delay: calc(-3s * (1 - var(--delay-percent, 0)));
             }
         }
 
         &.enter-polygon-bottom {
-            --scale: 0;
-
             opacity: 1;
             visibility: visible;
             z-index: 1;
         }
 
         &.enter-polygon-center {
-            --scale: 0;
-
-            transform: translate3d(0, 0, 0);
-            transition: clip-path 0.1s linear;
             opacity: 1;
             visibility: visible;
             z-index: 2;
         }
 
         &.leave-polygon-center {
-            --scale: 10;
-
-            transform: translate3d(0, 0, 0);
-            transition: clip-path 0.1s linear;
             opacity: 1;
             visibility: visible;
             z-index: 1;
@@ -137,15 +125,11 @@ $block-name: 'b-page';
         }
 
         &.in-polygon-bottom {
-            --scale: calc(10 * var(--perc, 1));
-
             transition: clip-path 0.1s linear;
             z-index: 2;
         }
 
         &.in-polygon-center {
-            --scale: calc(10 * var(--perc, 1));
-
             transition: clip-path 0.1s linear;
 
             &.in-delay {
@@ -229,16 +213,16 @@ $block-name: 'b-page';
         }
 
         &.out-polygon-center {
-            --scale: calc(10 * var(--perc, 0));
-
             transition: clip-path 0.1s;
         }
 
         &.out-polygon-back-center {
-            --scale: 0;
-
-            transition: clip-path 0.1s;
+            animation-delay: calc(-3s * (1 - var(--delay-percent, 1)));
         }
+
+        // &.out-slide-back {
+        //     transform: translate3d(0, calc(-100vh * var(--perc)), 0);
+        // }
 
         &.no-anim {
             transition: none !important;
@@ -310,6 +294,8 @@ $block-name: 'b-page';
 
             &.leave-back {
                 z-index: 3;
+                animation-delay: -3s;
+                transform: translate3d(0, calc(-100vh * var(--perc, 1)), 0);
             }
         }
 
@@ -400,15 +386,45 @@ $block-name: 'b-page';
 
         to {
             clip-path: polygon(
-                50vw calc(50vh - 12.6rem * 5),
-                calc(50vw + 8.9rem * 5) calc(50vh - 8.95rem * 5),
-                calc(50vw + 12.65rem * 5) calc(50vh),
-                calc(50vw + 8.9rem * 5) calc(50vh + 8.95rem * 5),
-                50vw calc(50vh + 12.6rem * 5),
-                calc(50vw - 8.9rem * 5) calc(50vh + 8.95rem * 5),
-                calc(50vw - 12.65rem * 5) calc(50vh),
-                calc(50vw - 8.9rem * 5) calc(50vh - 8.95rem * 5),
-                50vw calc(50vh - 12.6rem * 5)
+                50vw calc(50vh - 63rem),
+                calc(50vw + 44.5rem) calc(50vh - 44.75rem),
+                calc(50vw + 63.25rem) 50vh,
+                calc(50vw + 44.5rem) calc(50vh + 44.75rem),
+                50vw calc(50vh + 63rem),
+                calc(50vw - 44.5rem) calc(50vh + 44.75rem),
+                calc(50vw - 63.25rem) 50vh,
+                calc(50vw - 44.5rem) calc(50vh - 44.75rem),
+                50vw calc(50vh - 63rem)
+            );
+        }
+    }
+
+    @keyframes show-from-polygon-center-desk {
+        from {
+            clip-path: polygon(
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh
+            );
+        }
+
+        to {
+            clip-path: polygon(
+                50vw calc(50vh - 126rem),
+                calc(50vw + 89rem) calc(50vh - 89.5rem),
+                calc(50vw + 126.5rem) 50vh,
+                calc(50vw + 89rem) calc(50vh + 89.5rem),
+                50vw calc(50vh + 126rem),
+                calc(50vw - 89rem) calc(50vh + 89.5rem),
+                calc(50vw - 126.5rem) 50vh,
+                calc(50vw - 89rem) calc(50vh - 89.5rem),
+                50vw calc(50vh - 126rem)
             );
         }
     }
@@ -439,6 +455,36 @@ $block-name: 'b-page';
                 calc(50vw - 63.25rem) calc(100vh - 44.75rem),
                 calc(50vw - 44.5rem) calc(100vh - 89rem),
                 50vw calc(100vh - 108rem)
+            );
+        }
+    }
+
+    @keyframes show-from-polygon-bottom-desk {
+        from {
+            clip-path: polygon(
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh
+            );
+        }
+
+        to {
+            clip-path: polygon(
+                50vw calc(100vh - 216rem),
+                calc(50vw + 89rem) calc(100vh - 178rem),
+                calc(50vw + 126.5rem) calc(100vh - 89.5rem),
+                calc(50vw + 89rem) 100vh,
+                50vw calc(100vh + 37rem),
+                calc(50vw - 89rem) 100vh,
+                calc(50vw - 126.5rem) calc(100vh - 89.5rem),
+                calc(50vw - 89rem) calc(100vh - 178rem),
+                50vw calc(100vh - 216rem)
             );
         }
     }

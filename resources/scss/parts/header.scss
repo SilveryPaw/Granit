@@ -4,7 +4,7 @@ $block-name: 'b-header';
 
 .#{$block-name} {
     overflow: visible;
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,7 +15,6 @@ $block-name: 'b-header';
     transition: transform var(--base-transition-time) ease-in-out;
 
     @include breakpoint(1280) {
-        position: fixed;
         padding: 2rem 6rem;
     }
 

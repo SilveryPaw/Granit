@@ -83,12 +83,6 @@ export default class ScrollAnimation
         }
     }
 
-    getCurrentScreen() {
-        let scroll = document.documentElement.scrollTop;
-        let curScreen = scroll / this.#screens.length;
-        let curScroll = scroll % this.#screens.length;
-    }
-
     swipeEvent() {
         this.xDown = null;
         this.yDown = null;
@@ -151,9 +145,27 @@ export default class ScrollAnimation
 
     toScreen(index) {
         this.isAnimating = true;
+        let found = false;
 
         this.#screens.forEach((screen, id) => {
             screen.clearClasses();
+            if(id < index) {
+                screen.setPercents(1);
+            } else if(id > index) {
+                screen.setPercents(0);
+            }
+
+            if(Math.abs(id - index) > 2) {
+                if(id > index) {
+                    screen.hide();
+                } else {
+                    screen.hideTop();
+                    screen.leaveBack();
+                }
+            } else {
+                screen.show();
+                screen.removeHideTop();
+            }
             screen.container.classList.add('no-anim');
             setTimeout(function() {
                 screen.container.classList.remove('no-anim');
@@ -168,6 +180,12 @@ export default class ScrollAnimation
                 if(this.prevScreen > 0) {
                     this.#screens[this.prevScreen - 1].hideTop();
                 }
+            } else if(!found) {
+                screen.hideTop();
+                screen.leaveBack();
+            } else {
+                screen.hide();
+                screen.leave();
             }
         });
 

@@ -21,10 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         activeClass: 'enter',
                         inactiveClass: 'leave'
                     },
-                    screenHeight: 2000,
+                    screenHeight: 3000,
+                    screenHeightDesk: 2000,
                     defaultEnterPercents: 0,
                     defaultLeaveBackPercents: 0,
-                    delayPx: 1000
+                    delayPx: 2000,
+                    delayPxDesk: 1000
                 }
             ),
             new Screen(
