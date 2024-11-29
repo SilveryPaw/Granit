@@ -240,4 +240,15 @@ document.addEventListener('DOMContentLoaded', function() {
             burgerMenu.classList.remove('active');
         });
     });
+
+    window.addEventListener('scroll', function() {
+        if(window.innerWidth >= 1280) return;
+        if(document.documentElement.scrollTop > window.innerHeight) {
+            header.style.setProperty('--perc', 1);
+            return;
+        }
+
+        let hidePercent = document.documentElement.scrollTop / window.innerHeight;
+        header.style.setProperty('--perc', hidePercent);
+    });
 });

@@ -92,6 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 music.play();
                 music.classList.add('active');
                 container.classList.add('playing');
+                music.addEventListener('ended', function() {
+                    music.classList.remove('active');
+                    container.classList.remove('playing');
+                }, {once: true});
             }
         });
     });
