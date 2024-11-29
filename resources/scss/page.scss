@@ -39,7 +39,9 @@ $block-name: 'b-page';
             --default-max-scale: 5;
             --offset: 50vh;
 
+            will-change: clip-path;
             clip-path: $polygonBottom;
+            transform: translate3d(0, 0, 0);
 
             @include breakpoint(1280) {
                 --default-max-scale: 10;
@@ -49,7 +51,9 @@ $block-name: 'b-page';
         &.polygon-center {
             --default-max-scale: 5;
 
+            will-change: clip-path;
             clip-path: $polygonCentered;
+            transform: translate3d(0, 0, 0);
 
             @include breakpoint(1280) {
                 --default-max-scale: 10;
@@ -59,7 +63,7 @@ $block-name: 'b-page';
         &.enter-polygon-bottom {
             --scale: 0;
 
-            transform: translateY(0);
+            transform: translate3d(0, 0, 0);
             transition: clip-path 0.1s linear;
             opacity: 1;
             visibility: visible;
@@ -69,7 +73,7 @@ $block-name: 'b-page';
         &.enter-polygon-center {
             --scale: 0;
 
-            transform: translateY(0);
+            transform: translate3d(0, 0, 0);
             transition: clip-path 0.1s linear;
             opacity: 1;
             visibility: visible;
@@ -79,7 +83,7 @@ $block-name: 'b-page';
         &.leave-polygon-center {
             --scale: 10;
 
-            transform: translateY(0);
+            transform: translate3d(0, 0, 0);
             transition: clip-path 0.1s linear;
             opacity: 1;
             visibility: visible;
