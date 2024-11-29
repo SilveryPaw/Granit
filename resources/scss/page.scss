@@ -36,15 +36,20 @@ $block-name: 'b-page';
         }
 
         &.polygon-bottom {
-            --default-max-scale: 5;
             --offset: 50vh;
 
             will-change: clip-path;
-            clip-path: $polygonBottom;
+            animation: show-from-polygon-bottom 3s linear both;
+            animation-play-state: paused;
+            animation-delay: calc(-3s *var(--perc));
             transform: translate3d(0, 0, 0);
 
             @include breakpoint(1280) {
                 --default-max-scale: 10;
+            }
+
+            &.leave-back {
+                animation-delay: -3s;
             }
         }
 
@@ -63,8 +68,6 @@ $block-name: 'b-page';
         &.enter-polygon-bottom {
             --scale: 0;
 
-            transform: translate3d(0, 0, 0);
-            transition: clip-path 0.1s linear;
             opacity: 1;
             visibility: visible;
             z-index: 1;
@@ -377,6 +380,66 @@ $block-name: 'b-page';
             opacity: 1;
             background-color: rgba(0 0 0 / 50%);
             transition: opacity var(--base-transition);
+        }
+    }
+
+    @keyframes show-from-polygon-center {
+        from {
+            clip-path: polygon(
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh,
+                50vw 50vh
+            );
+        }
+
+        to {
+            clip-path: polygon(
+                50vw calc(50vh - 12.6rem * 5),
+                calc(50vw + 8.9rem * 5) calc(50vh - 8.95rem * 5),
+                calc(50vw + 12.65rem * 5) calc(50vh),
+                calc(50vw + 8.9rem * 5) calc(50vh + 8.95rem * 5),
+                50vw calc(50vh + 12.6rem * 5),
+                calc(50vw - 8.9rem * 5) calc(50vh + 8.95rem * 5),
+                calc(50vw - 12.65rem * 5) calc(50vh),
+                calc(50vw - 8.9rem * 5) calc(50vh - 8.95rem * 5),
+                50vw calc(50vh - 12.6rem * 5)
+            );
+        }
+    }
+
+    @keyframes show-from-polygon-bottom {
+        from {
+            clip-path: polygon(
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh,
+                50vw 100vh
+            );
+        }
+
+        to {
+            clip-path: polygon(
+                50vw calc(100vh - 108rem),
+                calc(50vw + 44.5rem) calc(100vh - 89rem),
+                calc(50vw + 63.25rem) calc(100vh - 44.75rem),
+                calc(50vw + 44.5rem) calc(100vh),
+                50vw calc(100vh + 18.5rem),
+                calc(50vw - 44.5rem) calc(100vh),
+                calc(50vw - 63.25rem) calc(100vh - 44.75rem),
+                calc(50vw - 44.5rem) calc(100vh - 89rem),
+                50vw calc(100vh - 108rem)
+            );
         }
     }
 }
