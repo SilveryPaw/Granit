@@ -34,17 +34,15 @@ $block-name: 'b-sixteenth-screen';
     &__partners-chunk {
         position: relative;
         width: 100vw;
-
-        &.chunk1 .#{$block-name}__partners-wrapper {
-            @include breakpoint(1280) {
-                justify-content: flex-end;
-            }
-        }
     }
 
     &__partners-wrapper {
         display: flex;
         transition-timing-function: linear;
+
+        @include breakpoint(1280) {
+            justify-content: center;
+        }
     }
 
     &__partner {
