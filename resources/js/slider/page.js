@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     leaveClass: 'leave-half',
                     enterAnimClass: 'in-half',
-                    screenHeight: 800,
+                    screenHeight: 1200,
                     defaultEnterPercents: 0,
                     defaultLeaveBackPercents: 0,
                     screenHeightDesk: 1800,
@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     hideButton: true,
                     defaultEnterPercents: 0,
                     defaultLeaveBackPercents: 0,
+                    screenHeight: 1500,
                     delayPx: 300
                 }
             ),
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     permanentClass: 'polygon-bottom',
                     showButton: true,
                     defaultEnterPercents: 0,
-                    screenHeight: 100,
+                    screenHeight: 500,
                     screenHeightDesk: 300,
                     delayPxDesk: 100
                 }
