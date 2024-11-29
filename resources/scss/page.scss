@@ -18,18 +18,18 @@ $block-name: 'b-page';
         left: 0;
         opacity: 0;
         visibility: hidden;
-        transform: translateY(100%);
+        transform: translateY(100vh);
         transition: transform 0.1s linear;
 
         &.leave-back {
-            transform: translateY(calc(-100% * var(--perc, 1)));
+            transform: translateY(calc(-100vh * var(--perc, 1)));
             opacity: 1;
             visibility: visible;
             z-index: 1;
         }
 
         &.enter {
-            transform: translateY(calc(100% * (1 - var(--perc))));
+            transform: translateY(calc(100vh * (1 - var(--perc))));
             opacity: 1;
             visibility: visible;
             z-index: 1;
@@ -37,7 +37,7 @@ $block-name: 'b-page';
 
         &.polygon-bottom {
             --default-max-scale: 5;
-            --offset: 50%;
+            --offset: 50vh;
 
             clip-path: $polygonBottom;
 
@@ -87,29 +87,29 @@ $block-name: 'b-page';
         }
 
         &.leave {
-            transform: translateY(100%);
+            transform: translateY(100vh);
             opacity: 1;
             visibility: visible;
             z-index: 0;
         }
 
         &.leave-half {
-            transform: translateY(50%);
+            transform: translateY(50vh);
             opacity: 1;
             visibility: visible;
             z-index: 0;
         }
 
         &.in-slide {
-            --from: 100%;
-            --to: 0%;
+            --from: 100vh;
+            --to: 0vh;
 
             transition: transform 0.1s linear;
         }
 
         &.in-half {
-            --from: 56%;
-            --to: 0%;
+            --from: 56vh;
+            --to: 0vh;
 
             transition: transform 0.1s linear;
         }
@@ -154,7 +154,7 @@ $block-name: 'b-page';
 
             &.leave,
             &.leave-back {
-                transform: calc(-10% * var(--perc, 0));
+                transform: calc(-10vh * var(--perc, 0));
                 scale: calc(1 - 0.1 * var(--perc, 0));
                 z-index: -1;
             }
@@ -165,10 +165,10 @@ $block-name: 'b-page';
             
             &.leave,
             &.leave-back {
-                transform: translateY(calc(-56% * var(--perc, 0)));
+                transform: translateY(calc(-56vh * var(--perc, 0)));
 
                 @include breakpoint(1280) {
-                    transform: translateY(calc(-160% * var(--perc, 0)));
+                    transform: translateY(calc(-160vh * var(--perc, 0)));
                 }
             }
         }
@@ -213,11 +213,11 @@ $block-name: 'b-page';
             }
 
             &.leave [data-content] {
-                transform: translateY(calc(100% * var(--perc)));
+                transform: translateY(calc(100vh * var(--perc)));
             }
 
             &.leave-back [data-content] {
-                transform: translateY(calc(-100% * var(--perc)));
+                transform: translateY(calc(-100vh * var(--perc)));
             }
         }
 
@@ -242,8 +242,8 @@ $block-name: 'b-page';
 
             &::after {
                 position: absolute;
-                width: 100%;
-                height: 100%;
+                width: 100vw;
+                height: 100dvh;
                 top: 0;
                 left: 0;
                 background: rgba(0 0 0 / 50%);
@@ -313,15 +313,16 @@ $block-name: 'b-page';
 
             &.in-slide,
             &.leave-back {
-                --to: 1%;
+                --to: 1vh;
+
                 transition: none;
                 z-index: 2;
             }
 
             &::before {
                 position: absolute;
-                width: 100%;
-                height: 100%;
+                width: 100vw;
+                height: 100vh;
                 top: -0.1rem;
                 left: -0.1rem;
                 content: "";
