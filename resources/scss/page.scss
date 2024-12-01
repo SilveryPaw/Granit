@@ -228,6 +228,10 @@ $block-name: 'b-page';
             transition: none !important;
         }
 
+        &--first {
+            will-change: transform;
+        }
+
         &--third {
             z-index: -1 !important;
 
