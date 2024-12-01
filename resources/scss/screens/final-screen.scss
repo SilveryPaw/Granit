@@ -15,7 +15,8 @@ $block-name: 'b-final-screen';
         height: 1.1em;
         text-align: center;
         color: var(--color-gray);
-        margin-bottom: 8vh;
+        margin-bottom: 8dvh;
+        transition: margin-bottom 0.1s ease;
 
         @include breakpoint(1280) {
             color: var(--color-white);
@@ -27,15 +28,17 @@ $block-name: 'b-final-screen';
         display: flex;
         justify-content: center;
         gap: 1.6rem;
-        margin-bottom: 7vh;
+        margin-bottom: 7dvh;
+        transition: margin-bottom 0.1s ease;
     }
 
     &__contacts-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: min(2rem, 2vh);
-        margin-bottom: 7vh;
+        gap: min(2rem, 2dvh);
+        margin-bottom: 7dvh;
+        transition: margin-bottom 0.1s ease;
 
         @include breakpoint(1280) {
             margin-left: auto;
