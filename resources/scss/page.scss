@@ -6,7 +6,7 @@ $block-name: 'b-page';
     &__screens-container {
         position: absolute;
         width: 100vw;
-        height: 100dvh;
+        height: 100vh;
         top: 0;
         left: 0;
         overflow: hidden;
@@ -234,7 +234,7 @@ $block-name: 'b-page';
             &::after {
                 position: absolute;
                 width: 100vw;
-                height: 100dvh;
+                height: 100vh;
                 top: 0;
                 left: 0;
                 background: rgba(0 0 0 / 50%);
@@ -345,7 +345,7 @@ $block-name: 'b-page';
     &__temp-screen {
         visibility: hidden;
         width: 0;
-        height: var(--screen-h, 100dvh);
+        height: var(--screen-h, 100vh);
         z-index: -1;
     }
 
@@ -354,7 +354,7 @@ $block-name: 'b-page';
         top: 0;
         left: 0;
         width: 100vw;
-        height: 100dvh;
+        height: 100vh;
         z-index: 3;
         opacity: 0;
         visibility: hidden;
