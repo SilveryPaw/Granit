@@ -10,7 +10,6 @@
             muted
             loop
             playsinline
-            data-src-mobile="/video/first-bg-mobile.mp4"
             data-src-desk="/video/first-bg-desk.mp4"
         >
             <source/>
@@ -27,4 +26,5 @@
             {!! $date !!}
         </div>
     </div>
+    <img class="{{ $blockName }}__background" src="/imgs/first-screen/back.png"/>
 </div>

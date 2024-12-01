@@ -13,9 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if(window.innerWidth >= minDeskWidth && !videoSource.src.includes(videoPlayer.dataset.srcDesk)) {
             videoSource.src = videoPlayer.dataset.srcDesk;
             videoPlayer.load();
-        } else if(window.innerWidth < minDeskWidth && !videoSource.src.includes(videoPlayer.dataset.srcMobile)) {
-            videoSource.src = videoPlayer.dataset.srcMobile;
-            videoPlayer.load();
         }
     }    
 });

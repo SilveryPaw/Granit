@@ -159,7 +159,7 @@ $block-name: 'b-page';
                 transform: translateY(calc(-56vh * var(--perc, 0)));
 
                 @include breakpoint(1280) {
-                    transform: translateY(calc(-160vh * var(--perc, 0)));
+                    transform: translateY(calc(-140vh * var(--perc, 0)));
                 }
             }
         }
