@@ -149,11 +149,6 @@ export default class ScrollAnimation
 
         this.#screens.forEach((screen, id) => {
             screen.clearClasses();
-            if(id < index) {
-                screen.setPercents(1);
-            } else if(id > index) {
-                screen.setPercents(0);
-            }
 
             if(Math.abs(id - index) > 2) {
                 if(id > index) {
@@ -177,7 +172,7 @@ export default class ScrollAnimation
                 this.activeScreen = id;
                 this.nextScreen = id + 1;
 
-                screen.tempScreen.scrollIntoView()
+                screen.tempScreen.scrollIntoView();
                 
                 if(this.prevScreen > 0) {
                     this.#screens[this.prevScreen - 1].hideTop();
@@ -185,9 +180,11 @@ export default class ScrollAnimation
             } else if(!found) {
                 screen.hideTop();
                 screen.leaveBack();
+                screen.setPercents(1)
             } else {
                 screen.hide();
                 screen.leave();
+                screen.setPercents(0);
             }
         });
 

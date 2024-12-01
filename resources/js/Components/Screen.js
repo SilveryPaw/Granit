@@ -32,6 +32,8 @@ export default class Screen
     #screenIndex;
     #screenHeight;
     #screenHeightDesk;
+    #screenHeightUnits;
+    #screenHeightDeskUnits;
     #delayPx = 0;
     #delayPxDesk = 0;
     #defaultEnterPercents = 0;
@@ -59,7 +61,9 @@ export default class Screen
         this.#screen.style.setProperty('--anim-delay', this.transitionTime + 'ms')
         this.#screen.style.setProperty('--next-anim-delay', this.nextAnimTime + 'ms')
         this.#screenHeight = options.screenHeight ?? window.innerHeight;
+        this.#screenHeightUnits = options.screenHeightUnits ?? 'px';
         this.#screenHeightDesk = options.screenHeightDesk ?? null;
+        this.#screenHeightDeskUnits = options.screenHeightDeskUnits ?? 'px';
         this.#defaultEnterPercents = options.defaultEnterPercents ?? this.#defaultEnterPercents;
         this.#defaultEnterReturnPercents = options.defaultEnterReturnPercents ?? this.#defaultEnterReturnPercents;
         this.#defaultLeaveBackPercents = options.defaultLeaveBackPercents ?? this.#defaultLeaveBackPercents;
@@ -158,9 +162,9 @@ export default class Screen
         this.#tempScreen = document.querySelector(`.${this.#blockName}__temp-screen[data-index="${this.#screenIndex}"]`);
 
         if(window.innerWidth > this.#minDeskWitdh && this.#screenHeightDesk !== null) {
-            this.#tempScreen.style.setProperty('height', this.#screenHeightDesk + 'px');
+            this.#tempScreen.style.setProperty('height', this.#screenHeightDesk + this.#screenHeightDeskUnits);
         } else {
-            this.#tempScreen.style.setProperty('height', this.#screenHeight + 'px');
+            this.#tempScreen.style.setProperty('height', this.#screenHeight + this.#screenHeightUnits);
         }
     }
 

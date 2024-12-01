@@ -199,7 +199,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     transitionTime: 3000,
                     transitionTimeLeaveBack: 1000,
                     animClassesDelay: 100,
-                    saveChildrenClassPermanent: true
+                    saveChildrenClassPermanent: true,
+                    screenHeight: 100,
+                    screenHeightUnits: 'vh'
                 }
             ),
             new Screen(
@@ -208,7 +210,9 @@ document.addEventListener('DOMContentLoaded', function() {
             new Screen(
                 `${selectorPart}final`,
                 {
-                    delayPx: 300
+                    delayPx: 300,
+                    screenHeight: 100,
+                    screenHeightUnits: 'vh'
                 }
             ),
         ],
