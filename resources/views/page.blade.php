@@ -29,7 +29,7 @@
         @endforeach
     </div>
     <div class="{{ $blockName }}__buy-frame">
-        <iframe
+        {{-- <iframe
             frameborder="0"
             width="100%"
             height="50%"
@@ -41,7 +41,7 @@
             class="tc-widget-frame_popup"
             allowpaymentrequest=""
             allow="payment *"
-        ></iframe>
+        ></iframe> --}}
     </div>
 
     {!! $buyButton !!}

@@ -10,8 +10,10 @@
             muted
             loop
             playsinline
+            data-src-mobile="/video/first-bg-mobile.mp4"
+            data-src-desk="/video/first-bg-desk.mp4"
         >
-            <source src="/video/first-bg.mp4"/>
+            <source/>
         </video>
     </fieldset>
     <div class="{{ $blockName }}__text-container">
