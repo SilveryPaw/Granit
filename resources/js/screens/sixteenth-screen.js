@@ -13,10 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
             loop: true,
             slidesPerView: 'auto',
             speed: 2000,
-            autoplay: {
-                delay: 1,
-                reverseDirection: reverse
-            }
         });
     });
 });

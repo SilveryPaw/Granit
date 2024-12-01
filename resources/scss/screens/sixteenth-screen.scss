@@ -39,9 +39,18 @@ $block-name: 'b-sixteenth-screen';
     &__partners-wrapper {
         display: flex;
         transition-timing-function: linear;
+        will-change: transform;
 
         @include breakpoint(1280) {
             justify-content: center;
+        }
+    }
+
+    &.leave-back,
+    &.enter,
+    &.leave {
+        .#{$block-name}__partners-wrapper {
+            will-change: transform;
         }
     }
 

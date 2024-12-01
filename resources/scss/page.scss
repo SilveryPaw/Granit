@@ -220,10 +220,6 @@ $block-name: 'b-page';
             animation-delay: calc(-3s * (1 - var(--delay-percent, 1)));
         }
 
-        // &.out-slide-back {
-        //     transform: translate3d(0, calc(-100vh * var(--perc)), 0);
-        // }
-
         &.no-anim {
             transition: none !important;
         }
@@ -306,6 +302,7 @@ $block-name: 'b-page';
         &--sixteenth {
             background-color: var(--color-black);
             transition: none;
+            will-change: transform;
             z-index: 2 !important;
 
             &.in-slide,
