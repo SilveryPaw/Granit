@@ -333,11 +333,12 @@ $block-name: 'b-page';
 
         &.hide-top {
             display: none;
-            transform: translateY(-100vh);
+            transform: translateY(-200vh);
         }
 
         &.hide {
             display: none;
+            transform: translateY(200vh);
         }
     }
 

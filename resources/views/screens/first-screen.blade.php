@@ -26,5 +26,9 @@
             {!! $date !!}
         </div>
     </div>
-    <img class="{{ $blockName }}__background" src="/imgs/first-screen/back.png"/>
+    <img
+        class="{{ $blockName }}__background"
+        src="/imgs/first-screen/back.png"
+        loading="lazy"
+    />
 </div>

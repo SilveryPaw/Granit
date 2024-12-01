@@ -12,7 +12,7 @@
     >
         @foreach($screens as $key => $screen)
             <div
-                class="{{ $blockName }}__screen {{ $blockName }}__screen--{{ $key }} {{ $loop->first ? 'enter' : '' }}"
+                class="{{ $blockName }}__screen {{ $blockName }}__screen--{{ $key }} {{ $loop->first ? 'enter' : '' }} {{ $loop->index >= 3 ? 'hide' : '' }}"
                 data-index="{{ $key }}"    
             >
                 {!! $screen !!}
@@ -23,7 +23,7 @@
         @foreach($screens as $key => $screen)
             <div
                 class="{{ $blockName }}__temp-screen"
-                data-index="{{ $key }}"    
+                data-index="{{ $key }}"
             >
             </div>
         @endforeach
@@ -41,6 +41,7 @@
             class="tc-widget-frame_popup"
             allowpaymentrequest=""
             allow="payment *"
+            loading="lazy"
         ></iframe>
     </div>
 
