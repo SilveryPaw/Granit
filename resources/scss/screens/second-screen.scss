@@ -83,6 +83,7 @@ $block-name: 'b-second-screen';
             transform var(--base-transition);
         animation: show-hide 3s linear;
         animation-play-state: paused;
+        will-change: transform, opacity;
 
         @include breakpoint(1280) {
             opacity: 1;
