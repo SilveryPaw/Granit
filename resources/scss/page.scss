@@ -323,8 +323,12 @@ $block-name: 'b-page';
             }
         }
 
-        &--final.in-slide {
-            transition: none;
+        &--final {
+            height: fit-content;
+
+            &.in-slide {
+                transition: none;
+            }
         }
 
         &.hide-top {

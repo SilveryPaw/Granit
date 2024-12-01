@@ -158,8 +158,10 @@ export default class ScrollAnimation
             if(Math.abs(id - index) > 2) {
                 if(id > index) {
                     screen.hide();
+                    screen.setPercents(0);
                 } else {
                     screen.hideTop();
+                    screen.setPercents(1);
                     screen.leaveBack();
                 }
             } else {
