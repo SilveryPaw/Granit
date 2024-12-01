@@ -1,4 +1,5 @@
 import Swiper from "swiper/bundle";
+import {Navigation} from "swiper/modules";
 
 const blockName = 'b-eleventh-screen';
 
@@ -22,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 disabledClass: `${blockName}__nav-elem--disabled`
             },
             spaceBetween: 5,
+            slidesPerView: 1,
+            slidesPerGroup: 1,
             allowTouchMove: false,
             speed: 1000,
             on: {
@@ -55,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
             slidesPerView: 'auto',
             centeredSlides: true,
             initialSlide: startIndex,
-            speed: 1000,
             on: {
                 slideChangeTransitionStart: function() {
                     const playing = block.querySelector(`.${blockName}__music-sound.active`);

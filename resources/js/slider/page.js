@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     screenHeight: 2000,
                     screenHeightDesk: 1500,
-                    delayPx: 700,
                     defaultEnterPercents: 0,
                 }
             ),
