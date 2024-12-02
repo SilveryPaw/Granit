@@ -44,6 +44,8 @@ $block-name: 'b-eleventh-screen';
 
     &__music-img {
         margin-bottom: 2rem;
+        aspect-ratio: 1/1;
+        object-fit: cover;
     }
 
     &__author {
