@@ -6,9 +6,9 @@
     <div class="{{ $blockName }}__title c-font-overpass">
         {!! $title !!}
     </div>
-    <img class="{{ $blockName }}__image" src="{{ $img }}" loading="lazy"/>
+    <img class="{{ $blockName }}__image" src="{{ $img }}"/>
     <picture class="{{ $blockName }}__background c-background">
         <source srcset="{{ $bg['mobile'] }}" media="(max-width:767px)"/>
-        <img src="{{ $bg['desk'] }}" loading="lazy"/>
+        <img src="{{ $bg['desk'] }}"/>
     </picture>
 </div>

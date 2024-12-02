@@ -20,9 +20,14 @@
             <p class="{{ $blockName }}__descr">
                 Ваш билет на GRANI по спец.цене на старте продаж. Цена может измениться уже завтра.
             </p>
-            <button class="{{ $blockName }}__buy">
+            <a
+                class="{{ $blockName }}__buy"
+                data-tc-token="eyJhbGciOiJIUzI1NiIsImlzcyI6InRpY2tldHNjbG91ZC5ydSIsInR5cCI6IkpXVCJ9.eyJwIjoiNjcxYjdlODVjNGI4YWRiMWZjYjc1MTliIn0.O1jLtwQsqu752kyMqo5gsC9r8gu8FXiSqXbL3mmaH9E"
+                data-tc-event="671b858e2b2cf13e2b5a4ff8"
+                data-buttonfieldset="button"
+            >
                 купить билет
-            </button>
+            </a>
         </div>
         <div class="{{ $blockName }}__ticket-container golden">
             <p class="{{ $blockName }}__label">
@@ -38,9 +43,14 @@
             <p class="{{ $blockName }}__descr">
                 Отдельный вход без очередей максимальное погружение в GRANI
             </p>
-            <button class="{{ $blockName }}__buy">
+            <a
+                class="{{ $blockName }}__buy"
+                data-tc-token="eyJhbGciOiJIUzI1NiIsImlzcyI6InRpY2tldHNjbG91ZC5ydSIsInR5cCI6IkpXVCJ9.eyJwIjoiNjcxYjdlODVjNGI4YWRiMWZjYjc1MTliIn0.O1jLtwQsqu752kyMqo5gsC9r8gu8FXiSqXbL3mmaH9E"
+                data-tc-event="671b858e2b2cf13e2b5a4ff8"
+                data-buttonfieldset="button"
+            >
                 купить билет
-            </button>
+            </a>
         </div>
     </div>
 </div>

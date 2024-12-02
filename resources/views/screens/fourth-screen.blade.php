@@ -14,12 +14,12 @@
     <div class="{{ $blockName }}__background">
         <picture class="{{ $blockName }}__part top">
             <source srcset="{{ $bg['mobile']['top'] }}" media="(max-width:768px)">
-            <img src="{{ $bg['mobile']['top'] }}" loading="lazy"/>
+            <img src="{{ $bg['mobile']['top'] }}"/>
         </picture>
         <picture class="{{ $blockName }}__part bottom">
             <source srcset="{{ $bg['mobile']['bottom'] }}" media="(max-width:768px)">
-            <img src="{{ $bg['mobile']['bottom'] }}" loading="lazy"/>
+            <img src="{{ $bg['mobile']['bottom'] }}"/>
         </picture>
-        <img class="{{ $blockName }}__bg-desk" src="{{ $bg['desk'] }}" loading="lazy"/>
+        <img class="{{ $blockName }}__bg-desk" src="{{ $bg['desk'] }}"/>
     </div>
 </div>

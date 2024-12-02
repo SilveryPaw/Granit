@@ -33,6 +33,7 @@ class MainController
                 'sixteenth' => $this->getSixteenthScreen(),
                 'final' => $this->getFinalScreen()
             ],
+            'preloader' => $this->getPrelaoder(),
             'header' => $this->getHeaderBlock(),
             'buyButton' => $this->getBuyButton(),
             'seo' => [
@@ -281,6 +282,13 @@ class MainController
         return view('parts.buy-button', [
             'text' => $this->data['buy_text'],
             'link' => $this->data['buy_link']
+        ]);
+    }
+
+    private function getPrelaoder()
+    {
+        return view('screens.preloader-screen', [
+            'logo' => file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/imgs/icons/logo.svg'),
         ]);
     }
 

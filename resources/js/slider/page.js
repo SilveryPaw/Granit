@@ -84,7 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     defaultEnterPercents: 0,
                     defaultLeaveBackPercents: 0,
                     screenHeight: 1500,
-                    delayPx: 300
+                    delayPx: 300,
+                    beforeSlides: 2
                 }
             ),
             new Screen(

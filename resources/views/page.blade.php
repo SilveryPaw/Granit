@@ -6,9 +6,10 @@
 
 @section('content')
     {!! $header !!}
+    {!! $preloader !!}
     <div
         class="{{ $blockName }}__screens-container"
-        style="--screens-count:{{ count($screens) }}"
+        style="--screens-count:{{ count($screens) }};display:none"
     >
         @foreach($screens as $key => $screen)
             <div
@@ -28,7 +29,7 @@
             </div>
         @endforeach
     </div>
-    <div class="{{ $blockName }}__buy-frame">
+    {{-- <div class="{{ $blockName }}__buy-frame">
         <iframe
             frameborder="0"
             width="100%"
@@ -41,9 +42,8 @@
             class="tc-widget-frame_popup"
             allowpaymentrequest=""
             allow="payment *"
-            loading="lazy"
         ></iframe>
-    </div>
+    </div> --}}
 
     {!! $buyButton !!}
 @endsection

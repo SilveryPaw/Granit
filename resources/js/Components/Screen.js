@@ -43,6 +43,7 @@ export default class Screen
     #hideBuyButton = false;
     #showBuyButton = false;
     #minDeskWitdh = 1280;
+    #beforeSlides = 1;
 
     constructor(screenSelector, options = {})
     {
@@ -68,7 +69,8 @@ export default class Screen
         this.#defaultEnterReturnPercents = options.defaultEnterReturnPercents ?? this.#defaultEnterReturnPercents;
         this.#defaultLeaveBackPercents = options.defaultLeaveBackPercents ?? this.#defaultLeaveBackPercents;
         this.#defaultLeavePercents = options.defaultLeavePercents ?? this.#defaultLeavePercents;
-
+        this.#beforeSlides = options.beforeSlides ?? this.#beforeSlides;
+        
         if(options.permanentClass) {
             this.#permanentClass = options.permanentClass;
             this.#screen.classList.add(options.permanentClass);
@@ -177,6 +179,10 @@ export default class Screen
             return this.#delayPxDesk;
         }
         return this.#delayPx;
+    }
+
+    get beforeSlides() {
+        return this.#beforeSlides;
     }
 
     get container()

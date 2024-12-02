@@ -282,7 +282,7 @@ export default class ScrollAnimation
                 screen.enter();
             } else if(index === this.nextScreen) {
                 screen.leave();
-            } else if (index < this.activeScreen - 2) {
+            } else if (index < this.activeScreen - curScreen.beforeSlides) {
                 screen.noAnim();
                 screen.hideTop();
             } else if (index > this.activeScreen) {

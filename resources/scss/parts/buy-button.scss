@@ -18,7 +18,8 @@ $block-name: 'b-buy-button';
     color: var(--color-black);
     font-size: 2.2rem;
     line-height: 1.27;
-    z-index: 3;
+    z-index: 2;
+    cursor: pointer;
 
     @include breakpoint(1280) {
         bottom: 5rem;

@@ -19,11 +19,12 @@
         ])
     @endif
 </head>
-<body>
+<body class="no-scroll">
     <main>
         <div class="content">
             @yield('content')
         </div>
     </main>
+    <script src="https://ticketscloud.org/static/scripts/widget/tcwidget.js"></script>
 </body>
 </html>

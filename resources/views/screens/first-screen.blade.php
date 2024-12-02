@@ -29,6 +29,5 @@
     <img
         class="{{ $blockName }}__background"
         src="/imgs/first-screen/back.png"
-        loading="lazy"
     />
 </div>
