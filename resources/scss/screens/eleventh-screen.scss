@@ -109,8 +109,11 @@ $block-name: 'b-eleventh-screen';
     }
 
     &__nav-elem {
+        position: relative;
         display: flex;
         transition: opacity 0.5s ease;
+        height: 3rem;
+        padding: 0 2rem;
 
         &.prev {
             transform: rotate(-180deg);
@@ -119,6 +122,11 @@ $block-name: 'b-eleventh-screen';
         &--disabled,
         &:hover {
             opacity: 0.4;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
         }
     }
 }
