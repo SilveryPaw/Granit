@@ -422,15 +422,15 @@ $block-name: 'b-page';
 
         to {
             clip-path: polygon(
-                50vw calc(50vh - 126rem),
-                calc(50vw + 89rem) calc(50vh - 89.5rem),
-                calc(50vw + 126.5rem) 50vh,
-                calc(50vw + 89rem) calc(50vh + 89.5rem),
-                50vw calc(50vh + 126rem),
-                calc(50vw - 89rem) calc(50vh + 89.5rem),
-                calc(50vw - 126.5rem) 50vh,
-                calc(50vw - 89rem) calc(50vh - 89.5rem),
-                50vw calc(50vh - 126rem)
+                50vw calc(50vh - 72.35vw),
+                calc(50vw + 51.1vw) calc(50vh - 51.39vw),
+                calc(50vw + 72.64vw) 50vh,
+                calc(50vw + 51.1vw) calc(50vh + 51.39vw),
+                50vw calc(50vh + 72.35vw),
+                calc(50vw - 51.1vw) calc(50vh + 51.39vw),
+                calc(50vw - 72.64vw) 50vh,
+                calc(50vw - 51.1vw) calc(50vh - 51.39vw),
+                50vw calc(50vh - 72.35vw)
             );
         }
     }
@@ -482,15 +482,15 @@ $block-name: 'b-page';
 
         to {
             clip-path: polygon(
-                50vw calc(100vh - 216rem),
-                calc(50vw + 89rem) calc(100vh - 178rem),
-                calc(50vw + 126.5rem) calc(100vh - 89.5rem),
-                calc(50vw + 89rem) 100vh,
-                50vw calc(100vh + 37rem),
-                calc(50vw - 89rem) 100vh,
-                calc(50vw - 126.5rem) calc(100vh - 89.5rem),
-                calc(50vw - 89rem) calc(100vh - 178rem),
-                50vw calc(100vh - 216rem)
+                50vw calc(100vh - 124.03vw),
+                calc(50vw + 51.156vw) calc(100vh - 102.2vw),
+                calc(50vw + 72.64vw) calc(100vh - 51.44vw),
+                calc(50vw + 51.156vw) 100vh,
+                50vw calc(100vh + 21.24vw),
+                calc(50vw - 51.156vw) 100vh,
+                calc(50vw - 72.64vw) calc(100vh - 51.44vw),
+                calc(50vw - 51.156vw) calc(100vh - 102.2vw),
+                50vw calc(100vh - 124.03vw)
             );
         }
     }

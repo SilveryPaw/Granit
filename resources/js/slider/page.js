@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `${selectorPart}fourth`,
                 {
                     screenHeight: 2000,
-                    screenHeightDesk: 1500,
+                    screenHeightDesk: 1300,
                     defaultEnterPercents: 0,
                 }
             ),
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     screenHeight: 1500,
                     screenHeightDesk: 2000,
                     delayPx: 1000,
+                    delayPxDesk: 700,
                     leaveBackAnimClass: 'out-half-leave',
                     defaultEnterPercents: 0,
                     defaultLeaveBackPercents: 0,
@@ -70,9 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     screenHeight: 1200,
                     defaultEnterPercents: 0,
                     defaultLeaveBackPercents: 0,
-                    screenHeightDesk: 1800,
+                    screenHeightDesk: 1200,
                     delayPx: 300,
-                    delayPxDesk: 1300,
+                    delayPxDesk: 700,
                     leaveBackAnimClass: 'out-no-leave',
                 }
             ),
@@ -140,8 +141,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     screenHeight: 1500,
                     delayPx: 1300,
                     screenHeightDesk: 1500,
-                    delayPxDesk: 1000,
-                    animClassesDelay: 100
+                    delayPxDesk: 1500,
+                    animClassesDelay: 100,
+                    beforeSlides: 2
                 }
             ),
             new Screen(
@@ -157,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     preventSelectors: '.b-eleventh-screen__controls-container',
                     screenHeightDesk: 1500,
-                    delayPxDesk: 500,
                 }
             ),
             new Screen(
@@ -165,7 +166,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     preventSelectors: '.b-eleventh-screen__controls-container',
                     screenHeightDesk: 1500,
-                    delayPxDesk: 500,
                 }
             ),
             new Screen(
@@ -173,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     preventSelectors: '.b-eleventh-screen__controls-container',
                     screenHeightDesk: 1500,
-                    delayPxDesk: 500,
                 }
             ),
             new Screen(
@@ -181,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     preventSelectors: '.b-eleventh-screen__controls-container',
                     screenHeightDesk: 1500,
-                    delayPxDesk: 500,
                     leaveBackAnimClass: 'out-no-leave'
                 }
             ),
@@ -211,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `${selectorPart}final`,
                 {
                     delayPx: 300,
+                    delayPxDesk: 0,
                     screenHeight: 100,
                     screenHeightUnits: 'vh'
                 }
